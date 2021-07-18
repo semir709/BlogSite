@@ -8,25 +8,28 @@ exports.login = (req, res) => {
     res.render('login');
 };
 
-exports.loginPost = (req, res) => {
+exports.loginPost = async (req, res) => {
     
     let con = db.getCon();
+    const data = req.body;
+    let samePasword;
 
-   db.getMail(con, req.body.email)
-   .then(response => {
-       if(response.length == 0) {
-           console.log('There is no mail such like that!!!');
-        
-       }
-        else {
-            custom.compare(req.body.password, response[0].admin_password)
-            .then(res => {
-                if(res) console.log('password is correct');
-                else console.log('password is not correct');
-            }).catch(err => console.error(err, 'Eroor in hash.compare')); 
-        }
-   }).catch(err => {con.end(); console.log(err);});
 
+    let mailRes = await db.getMail(con, data.email);
+
+    if(mailRes.length == 0) {
+        console.log('Mail is not correct!!!');
+    }
+
+    else {
+        samePasword = await custom.compare(data.password, mailRes[0].admin_password);
+    }
+
+    if(samePasword) console.log('Same password');
+    else console.log('Not same password');
+
+
+    con.end();
     
 }
 
@@ -35,24 +38,18 @@ exports.createAc = (req, res) => {
 };
 
 
-exports.createAcPost = (req, res) => {
+exports.createAcPost = async (req, res) => {
 
-    
     let data = req.body;
     let con = db.getCon();
 
-    custom.saltAndHash(data.password, 10)
-    .then(hash => {
+    let hash = await custom.saltAndHash(data.password, 14);
 
-     let val = await db.sendAmdinDataAsy( con, data.name, data.lastName, data.mail, hash, data.about);
-
-     console.log(val);
+    db.storeAdminData(con, data.name, data.lastName, data.mail, hash, data.about);
 
 
-        db.sendAdminData(con, data.name, data.lastName, data.mail, hash, data.about)
-        .then(() => {con.end()});
-    }); 
 
+    con.end();
 };
 
 

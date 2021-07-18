@@ -20,15 +20,19 @@ module.exports = {
             bcrypt.compare(password, hash, (err, same) => {
                 if(err) rej(err);
                 else {
-                    if(same) {
-                        console.log(same);
-                        res(true);
-                    }
-                    else {
-                        res(false);
-                     }
+                    res(same);
                 }
+                
             });
+        });
+    },
+
+    comparee: (password, hash) => {
+        bcrypt.compare(password, hash, (err, same) => {
+            if(err) console.error(err);
+            else {
+                return same;
+            }
         });
     },
 
