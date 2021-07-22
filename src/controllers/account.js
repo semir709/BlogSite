@@ -14,11 +14,13 @@ exports.loginPost = async (req, res) => {
     const data = req.body;
     let samePasword;
 
+    let errors = []; 
+
 
     let mailRes = await db.getMail(con, data.email);
 
     if(mailRes.length == 0) {
-        console.log('Mail is not correct!!!');
+        errors.push({msg: 'email is required'})
     }
 
     else {
@@ -26,7 +28,9 @@ exports.loginPost = async (req, res) => {
     }
 
     if(samePasword) console.log('Same password');
-    else console.log('Not same password');
+    else errors.push({msg: 'Password is not correct'})
+
+
 
 
     con.end();
@@ -42,6 +46,31 @@ exports.createAcPost = async (req, res) => {
 
     let data = req.body;
     let con = db.getCon();
+
+    const errors = [];
+    const speChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+    //check mail is validate
+
+    //send message to that mail
+
+    let m = await con.promise().query('SELECT *  FROM admin_u WHERE admin_mail = ?', [data.mail]);
+
+    if(m[0].length !== 0) {
+        errors.push({msg:'User with this mail already exsist in our dataBase'});
+    }
+    
+    if(!data.name || !data.lastName || !data.mail || !data.password || !data.about) {
+        errors.push({msg: 'All filds are required'});
+    }
+
+    if(speChar.test(data.name) || /d/.test(data.name)) {
+        errors.push({msg: 'Is not alow to use numbers or symbols in name field'})
+    }
+
+    if(speChar.test(data.lastName) ||/d/.test(data.lastName)) {
+        errors.push({msg: 'Is not alow to use numbers or symbols in last name field'})
+    }
 
     let hash = await custom.saltAndHash(data.password, 14);
 

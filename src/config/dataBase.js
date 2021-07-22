@@ -36,7 +36,7 @@ module.exports = {
             con.query('SELECT * FROM admin_u WHERE admin_mail = ?', [
                 email
             ], (err,res) => {
-                if(err) return reject('error in query for selecting mails');
+                if(err) return reject('error in query for selecting mail');
                 else {
                     respone(res);    
                 }
