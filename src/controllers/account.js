@@ -1,5 +1,9 @@
+require('dotenv').config();
+
 let db = require('../config/dataBase');
 let custom = require('../config/custom');
+let randomStrings = require('randomstring');
+const mailMsg = require('../config/mailMessages');
 const { hash } = require('bcrypt');
 const { response } = require('express');
 
@@ -44,41 +48,56 @@ exports.createAc = (req, res) => {
 
 exports.createAcPost = async (req, res) => {
 
-    let data = req.body;
+    const {name, lastName, mail, password, about} = req.body;
     let con = db.getCon();
 
     const errors = [];
     const speChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-    //check mail is validate
+    const html = mailMsg.htmlVerfy;
 
-    //send message to that mail
+    await custom.sendMail('Bpostmaster@sandbox777f9b2f03ce48c8aa012711fb7b34df.mailgun.org', 'Please verify your email', mail, html);
 
-    let m = await con.promise().query('SELECT *  FROM admin_u WHERE admin_mail = ?', [data.mail]);
 
-    if(m[0].length !== 0) {
-        errors.push({msg:'User with this mail already exsist in our dataBase'});
+    let token = randomStrings.generate();
+    let confirm = false;
+
+    let m = await con.promise().query('SELECT *  FROM admin_u WHERE admin_mail = ?', [mail]);
+
+    if(m[0].length !== 0) {errors.push({msg:'User with this mail already exsist in our dataBase'});
     }
     
-    if(!data.name || !data.lastName || !data.mail || !data.password || !data.about) {
+    if(!name || !lastName || !mail || !password || !about) {
         errors.push({msg: 'All filds are required'});
     }
 
-    if(speChar.test(data.name) || /d/.test(data.name)) {
+    if(speChar.test(name) || /d/.test(name)) {
         errors.push({msg: 'Is not alow to use numbers or symbols in name field'})
     }
 
-    if(speChar.test(data.lastName) ||/d/.test(data.lastName)) {
+    if(speChar.test(lastName) ||/d/.test(lastName)) {
         errors.push({msg: 'Is not alow to use numbers or symbols in last name field'})
     }
 
-    let hash = await custom.saltAndHash(data.password, 14);
+    let hash = await custom.saltAndHash(password, 14);
 
-    db.storeAdminData(con, data.name, data.lastName, data.mail, hash, data.about);
+    con.query('INSERT INTO admin_u VALUES (0,?,?,?,?,?,?,?)', [
+        name,
+        lastName,
+        mail,
+        hash,
+        about,
+        token,
+        confirm
+    ],(err, res) => {
+        if(err) console.error(err);
+    });
 
 
 
     con.end();
+
+    res.redirect('/login/create')
 };
 
 

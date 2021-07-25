@@ -1,7 +1,23 @@
 let bcrypt = require('bcrypt');
+require('dotenv').config({path: '../.env'});
+let nodemailer = require('nodemailer');
+
+
+const transport = nodemailer.createTransport({
+    service:"Mailgun",
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+    },
+     tls: {
+         rejectUnauthorized: false
+    }
+    
+});
 
 
 module.exports = {
+    
     saltAndHash: function(password, rounds) {
         return new Promise((res, rej) => {
            
@@ -36,7 +52,13 @@ module.exports = {
         });
     },
 
-    mailValidation: function() {
-        
+    sendMail: function(from, subject, to, html ) {
+        return new Promise((reslove, reject) => {
+            transport.sendMail({from, subject, to, html}, (err,info) => {
+                if(err) reject(err);
+
+                reslove(info);
+            });
+        });
     }
 }

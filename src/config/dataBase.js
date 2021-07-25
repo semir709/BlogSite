@@ -18,14 +18,16 @@ module.exports = {
 
         return con;
     },
-    storeAdminData: function(con, name, lastName, mail, password, about) {
+    storeAdminData: function(con, name, lastName, mail, password, about, token, confirm) {
         
-        con.query('INSERT INTO admin_u VALUES (0,?,?,?,?,?)', [
+        con.query('INSERT INTO admin_u VALUES (0,?,?,?,?,?,?,?)', [
             name,
             lastName,
             mail,
             password,
-            about
+            about,
+            token,
+            confirm
         ],(err, res) => {
             if(err) console.error(err);
         });
