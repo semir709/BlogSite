@@ -8,16 +8,19 @@
 <body>
 
     <form action="/login/create" method="post">
+        <%- include('partials/messageError.ejs') %>
         <p>name</p>
-        <input name="name" type="text">
+        <input name="name" type="text" value="<%= typeof name != 'undefined' ? name : '' %>">
         <p>lastName</p>
-        <input name="lastName" type="text">
+        <input name="lastName" type="text" value="<%= typeof lastName != 'undefined' ? lastName : '' %>">
         <p>E-mail</p>
-        <input name="mail" type="text">
+        <input name="mail" type="text" value="<%= typeof mail != 'undefined' ? mail : '' %>">
         <p>password</p>
-        <input name="password" type="text">
+        <input name="password" type="text" value="<%= typeof password != 'undefined' ? password : '' %>">
+        <p>confrme password</p>
+        <input name="password2" type="text" value="<%= typeof password2 != 'undefined' ? password2 : '' %>">
         <p>about</p>
-        <textarea name="about" id="about" cols="30" rows="10"></textarea>
+        <textarea name="about" id="about" cols="30" rows="10"><%= typeof about != 'undefined' ? about : '' %></textarea>
         
         <button type="submit">enter</button>
     </form>

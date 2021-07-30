@@ -1,0 +1,9 @@
+<% if(typeof errors != 'undefined') { %>
+    <% errors.forEach(error => { %>
+        <%= error.msg; %>
+    <% }); %> 
+<% } %>
+
+<% if(succes_msg != '') { %>
+    <%= succes_msg %>
+<% } %>

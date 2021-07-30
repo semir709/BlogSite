@@ -52,7 +52,7 @@ module.exports = {
         });
     },
 
-    sendMail: function(from, subject, to, html ) {
+    sendMail: function(from, subject, to, html) {
         return new Promise((reslove, reject) => {
             transport.sendMail({from, subject, to, html}, (err,info) => {
                 if(err) reject(err);
