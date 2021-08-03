@@ -7,53 +7,60 @@ const mailMsg = require('../config/mailMessages');
 const { hash } = require('bcrypt');
 const { response } = require('express');
 const dataBase = require('../config/dataBase');
+const passport = require('passport');
 
 
 exports.login = (req, res) => {
     res.render('login');
 };
 
-exports.loginPost = async (req, res) => {
+exports.loginPost = passport.authenticate('local', {
+    successRedirect: '/admin',
+    failureMessage:'/login',
+    failureFlash:true
+}),
+ (req, res, next) => {
     
-    let con = db.getCon();
-    const data = req.body;
-    let samePasword;
+    res.redirect('/admin');
+    // let con = db.getCon();
+    // const data = req.body;
+    // let samePasword;
 
-    let errors = []; 
+    // let errors = []; 
 
 
-    let mailRes = await db.getMail(con, data.email);
+    // let mailRes = await db.getMail(con, data.email);
 
-    if(mailRes.length == 0) {
-        errors.push({msg: 'email is required'})
-        res.redirect('/login');
-    }
+    // if(mailRes.length == 0) {
+    //     errors.push({msg: 'email is required'})
+    //     res.redirect('/login');
+    // }
 
-    else {
-        samePasword = await custom.compare(data.password, mailRes[0].admin_password);
-    }
+    // else {
+    //     samePasword = await custom.compare(data.password, mailRes[0].admin_password);
+    // }
 
-    if(samePasword){
-        if(mailRes[0].superAdmin == true) {
-            //super admin privilage
-            res.redirect('/qadmin');
-        }
+    // if(samePasword){
+    //     if(mailRes[0].superAdmin == true) {
+    //         //super admin privilage
+    //         res.redirect('/qadmin');
+    //     }
 
-        else {
-            //admin privilage
-            res.redirect('/admin');
-        }
+    //     else {
+    //         //admin privilage
+    //         res.redirect('/admin');
+    //     }
         
-    }
-    else {
-        errors.push({msg: 'Password is not correct'});
-        res.redirect('/login');
-    }
+    // }
+    // else {
+    //     errors.push({msg: 'Password is not correct'});
+    //     res.redirect('/login');
+    // }
 
 
 
 
-    con.end();
+    // con.end();
 
     
 }
