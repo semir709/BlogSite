@@ -11,8 +11,8 @@ router.post('/login', accuont.loginPost);
 router.get('/login/create', accuont.createAc);
 router.post('/login/create', accuont.createAcPost);
 //router.get('/login/create/confrm/:token', accuont.getConfrm);
-router.get('/admin', admin.getAdmin);  
-router.get('/qadmin', admin.getFullAccesAdmin); 
+router.get('/admin',admin.userAccess, admin.getAdmin);  
+router.get('/qadmin', admin.userAccess, admin.getFullAccesAdmin); 
 
 
 

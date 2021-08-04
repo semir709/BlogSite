@@ -91,8 +91,8 @@ exports.createAcPost = async (req, res) => {
 
     let m = await con.promise().query('SELECT *  FROM admin_u WHERE admin_mail = ?', [mail]);
 
-    if(m[0].length !== 0) {errors.push({msg:'User with this mail already exsist in our dataBase'});
-    }
+   // if(m[0].length !== 0) {errors.push({msg:'User with this mail already exsist in our dataBase'});
+    //}
     
     if(!name || !lastName || !mail || !password || !about) {
         errors.push({msg: 'All filds are required'});
