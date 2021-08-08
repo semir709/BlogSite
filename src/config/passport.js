@@ -42,7 +42,6 @@ module.exports = (passport) => {
       });
 
     passport.deserializeUser((id, done) => {
-        console.log(id);
         con.promise().query('SELECT * FROM admin_u WHERE admin_id = ?', [id])
         .then((result) => {
             done(null, result[0][0]);

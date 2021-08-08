@@ -1,8 +1,17 @@
 const { response } = require('express');
 let mysql = require('mysql2');
+const { options } = require('../routes/routes');
 
 
 module.exports = {
+    option: function() {
+        return {
+            host:'localhost',
+            user:'root',
+            password:'root123',
+            database:'blogdb'
+        }
+    },
     getCon: function () {
         let con = mysql.createConnection({
             host:'localhost',

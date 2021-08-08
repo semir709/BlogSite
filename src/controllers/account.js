@@ -12,56 +12,15 @@ const passport = require('passport');
 
 exports.login = (req, res) => {
     res.render('login');
+    
 };
 
-exports.loginPost = passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureMessage:'/login',
-    failureFlash:true
-}),
- (req, res, next) => {
-    
-    res.redirect('/admin');
-    // let con = db.getCon();
-    // const data = req.body;
-    // let samePasword;
-
-    // let errors = []; 
-
-
-    // let mailRes = await db.getMail(con, data.email);
-
-    // if(mailRes.length == 0) {
-    //     errors.push({msg: 'email is required'})
-    //     res.redirect('/login');
-    // }
-
-    // else {
-    //     samePasword = await custom.compare(data.password, mailRes[0].admin_password);
-    // }
-
-    // if(samePasword){
-    //     if(mailRes[0].superAdmin == true) {
-    //         //super admin privilage
-    //         res.redirect('/qadmin');
-    //     }
-
-    //     else {
-    //         //admin privilage
-    //         res.redirect('/admin');
-    //     }
-        
-    // }
-    // else {
-    //     errors.push({msg: 'Password is not correct'});
-    //     res.redirect('/login');
-    // }
-
-
-
-
-    // con.end();
-
+exports.loginAuth = (req,res,next) =>{
+    passport.authenticate('local',{
+        successRedirect:'/admin',
+        failureRedirect:'/login',
+        failureFlash:true
+    })(req,res,next);
     
 }
 

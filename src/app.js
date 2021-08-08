@@ -1,21 +1,46 @@
 const express = require('express');
 const session = require('express-session');
 const flash = require('connect-flash');
+const db = require('./config/dataBase');
 const passport = require('passport');
+const mySqlStore = require('express-mysql-session')(session);
 
 require('dotenv').config();
 
 app = express();
 
-require('./config/passport')(passport); //
+require('./config/passport')(passport); 
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+
+
+const sessionStore = new mySqlStore({
+    host:'localhost',
+    user:'root',
+    password:'root123',
+    database:'blogdb',
+    createDatabaseTable: true,
+    schema: {
+        tableName:'sessiontb',
+        columnNames:{
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }
+
+});
+
 app.use(session({
     secret: process.env.SECRET, 
-    resave: true,
-    saveUninitialized: true,
+    store:sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie:{
+        maxAge:90000000
+    }
 }));
 
 app.use(passport.initialize());
