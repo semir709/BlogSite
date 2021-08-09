@@ -2,7 +2,9 @@
 
 
 exports.getAdmin = (req, res) => {
-    res.render('admin');
+    res.render('admin', {name: req.user.admin_name});
+    console.log(req.user);
+
 }
 
 exports.getFullAccesAdmin = (req, res) => {

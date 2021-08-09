@@ -16,12 +16,22 @@ exports.login = (req, res) => {
 };
 
 exports.loginAuth = (req,res,next) =>{
+
     passport.authenticate('local',{
-        successRedirect:'/admin',
         failureRedirect:'/login',
         failureFlash:true
     })(req,res,next);
-    
+}
+
+exports.loginPost = (req,res) => {
+
+    if(req.user.superAdmin) {
+        res.redirect('qadmin');
+    }
+
+    else {
+        res.redirect('/admin');
+    }
 }
 
 exports.createAc = (req, res) => {
