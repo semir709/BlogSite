@@ -14,7 +14,7 @@ module.exports = (passport) => {
                 
                 
                 if(result[0].length == 0) {
-                    return done(null, false, req.flash('loginNoMail', 'No user found'));
+                    return done(null, false, {message:'No user found'});
                 }
 
                 bcrypt.compare(password, result[0][0].admin_password, (err, same) => {
@@ -24,7 +24,7 @@ module.exports = (passport) => {
                         return done(null, result[0][0]);
                     }
                     else {
-                        return done(null, false, req.flash('loginNoPassword', 'Opps!, Wrong password!!!'));
+                        return done(null, false, {message:'Opps!, Wrong password!!!'});
                     }
                 });
             

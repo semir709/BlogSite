@@ -11,7 +11,8 @@ const passport = require('passport');
 
 
 exports.login = (req, res) => {
-    res.render('login');
+
+    res.render('login', {message: req.flash('error')});
     
 };
 
