@@ -14,6 +14,7 @@ require('./config/passport')(passport);
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use('/js', express.static('public/js'))
 
 
 const sessionStore = new mySqlStore({

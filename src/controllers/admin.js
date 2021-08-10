@@ -17,3 +17,8 @@ exports.userAccess = (req, res, next) => {
         else
             res.redirect('/login')
 }
+
+exports.dashboardLogout = (req,res) => {
+    req.logout();
+    res.redirect('/login');
+}

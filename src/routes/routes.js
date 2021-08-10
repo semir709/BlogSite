@@ -14,7 +14,8 @@ router.post('/login/create', accuont.createAcPost);
 //router.get('/login/create/confrm/:token', accuont.getConfrm);
 router.get('/admin',admin.userAccess, admin.getAdmin);  
 router.get('/qadmin', admin.userAccess, admin.getFullAccesAdmin); 
-
+router.get('/dashboard', admin.dashboardLogout);
+router.get('/qdashboard', admin.dashboardLogout);
 
 
 module.exports = router;
