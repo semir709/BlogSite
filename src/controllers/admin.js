@@ -2,13 +2,27 @@
 
 
 exports.getAdmin = (req, res) => {
-    res.render('admin', {name: req.user.admin_name});
-    console.log(req.user);
+
+    if(!req.user.superAdmin) {
+        res.render('admin', {name: req.user.admin_name});
+    }
+
+    else {
+        res.redirect('/qadmin');
+    }
 
 }
 
 exports.getFullAccesAdmin = (req, res) => {
-    res.render('fullAdmin');
+
+    if(req.user.superAdmin) {
+        res.render('fullAdmin');
+    }
+
+    else {
+        res.redirect('/admin');
+    }
+    
 }
 
 exports.userAccess = (req, res, next) => {
