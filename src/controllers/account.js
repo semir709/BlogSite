@@ -6,12 +6,11 @@ let randomStrings = require('randomstring');
 const mailMsg = require('../config/mailMessages');
 const { hash } = require('bcrypt');
 const { response } = require('express');
-const dataBase = require('../config/dataBase');
+//const dataBase = require('../config/dataBase');
 const passport = require('passport');
 
 
 exports.login = (req, res) => {
-
     res.render('login', {message: req.flash('error')});
     
 };
