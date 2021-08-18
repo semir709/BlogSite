@@ -16,11 +16,11 @@ exports.getAdmin = (req, res) => {
 
 exports.getFullAccesAdmin = async (req, res) => {
 
-    const con = db.getCon()
-    const data = await con.promise().query('SELECT * FROM admin_u');
+    // const con = db.getCon()
+    // const data = await con.promise().query('SELECT * FROM admin_u');
 
     if(req.user.superAdmin) {
-        res.render('fullAdmin', {data:data[0] }); 
+        res.render('fullAdmin' /*{data:data[0] }*/); 
     }
 
     else {

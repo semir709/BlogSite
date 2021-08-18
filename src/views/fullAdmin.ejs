@@ -5,27 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>qadmin</title>
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-
     
-    <div id="main">
+    <div id="main-nav">
         <%- include('superDashboard.ejs') %>
-        <p>main content</p>
     </div>
 
-    <table>
-
-        <% data.forEach(d => { %>
-            <tr>
-                <th><%= d.admin_name %></th>
-                <th><%= d.admin_surname %></th>
-            </tr>
-
-            <%= d.admin_name; %>
-        <% }); %>        
+    <div id="display">
         
-    </table>
-    
+    </div>
+
+
+    <script src="/js/dashboard.js"></script>
 </body>
 </html>
