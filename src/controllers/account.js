@@ -97,7 +97,7 @@ exports.createAcPost = async (req, res) => {
     else {
         let hash = await custom.saltAndHash(password, 14);
 
-        con.query('INSERT INTO admin_u VALUES (0,?,?,?,?,?,?,?,?)', [
+        con.query('INSERT INTO admin_u VALUES (0,?,?,?,?,?,CURDATE(),?,?,?)', [
             name,
             lastName,
             mail,
@@ -121,24 +121,4 @@ exports.createAcPost = async (req, res) => {
     
 };
 
-/*exports.getConfrm = async (req, res) => {
-    res.render('configuration');
-    const {token} = req.params;
-    const con = dataBase.getCon();
-
-    const queryRes = await con.promise().query('SELECT * FROM admin_u WHERE token = ?', [token]);
-
-    if(queryRes[0].length === 0) {
-        console.log('you are not having right token to confrm registration');
-    }
-    else {
-        console.log(queryRes[0]);
-        await con.promise().query('UPDATE admin_u SET token = "" AND confirmed = false WHERE admin_id = ?', [queryRes[0].admin_id]);
-    }
-
-    UPDATE admin_u
-SET token = "", confirmed = true 
-WHERE admin_id = 255;
-
-}*/
 

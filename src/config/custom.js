@@ -60,5 +60,30 @@ module.exports = {
                 reslove(info);
             });
         });
-    }
+    },
+    convertCheckBoxConfrm: function(data) {
+        let convData;
+
+        if(data.confrm == 'on') {
+            convData = 1;
+        }
+        else {
+            convData = 0;
+        }
+
+        return convData;
+    }, 
+
+    convertCheckBoxAdmin: function(data) {
+        let convData;
+
+        if(data.admin == 'on') {
+            convData = 1;
+        }
+         else {
+            convData = 0;
+         }
+
+         return convData;
+     }
 }

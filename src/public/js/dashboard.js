@@ -8,17 +8,14 @@ const display = document.getElementById('display');
 
 adminM_btn.addEventListener('click', () => {
     
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if(this.status == 200 && this.readyState == 4) {
-
-            display.innerHTML = this.responseText;
+    $.ajax({
+        type:'GET',
+        url:"/dashboard/getData",
+        success: function(data) {
+            $('#display').html(data);
+            
         }
-    }
-
-    xhttp.open('GET','/dashboard/getData', true);
-    xhttp.send();
+    });
 
 });
 

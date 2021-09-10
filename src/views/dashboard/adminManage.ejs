@@ -1,19 +1,51 @@
-<table>
 
-    <tr>
-        <th>Name</th>
-        <th>LastName</th>
-    </tr>
-
-    <% data.forEach(d => { %>
-        <tr>
-            <td><%= d.admin_name %></td>
-            <td><%= d.admin_surname %></td>
-        </tr>
-
-        
-    <% }); %>        
+<div id="adminManage">
+    <div id="tableDataBox">
+        <table id="table-data">
     
-</table> 
-
-
+            <tr>
+            
+                <th>Name</th>
+                <th>LastName</th>
+                <th>E-mail</th>
+                <th>Time u reg</th>
+                <th>Confrm</th>
+                <th>Admin</th>
+            </tr>
+        
+            <% data.forEach(d => { %>
+                <tr>
+                    <td><%= d.admin_id %></td>
+                    <td><%= d.admin_name %></td>
+                    <td><%= d.admin_surname %></td>
+                    <td><%= d.admin_mail %></td>
+                    <td><%= d.time_reg %></td>
+                    <td><input onclick="return false;" type="checkbox" name="confrm" class="checkConfrm"  <%= d.confirmed == '1' ? 'checked' : ''%>></td>
+                    <td><input onclick="return false;" type="checkbox" name="adminCheck" class="adminCheck"  <%= d.superAdmin == '1' ? 'checked' : ''%>></td>  
+                </tr>        
+            <% }); %>        
+            
+        </table>
+    </div>
+    
+    <div id="showData">
+        <form action="/dash/update/:id" method="post" id="formShowData">
+            <p>Name</p>
+            <input id="inputName" type="text" name="name">
+            <p>last Name</p>
+            <input id="inputLastName" type="text" name="lastName">
+            <p>E-mail</p>
+            <input id="inputMail" type="text" name="mail">
+            <p>Time u reg</p>
+            <input id="inputTime" type="text" name="time">
+            <p>restart password</p>
+            <p>Confrm</p>
+            <input id="inputConfrm" type="checkbox" name="confrm" >
+            <p>Admin</p>
+            <input id="inputAdmin" type="checkbox" name="admin" >
+            <br>
+            <button onclick="updateBtn(ID, event)"  id="update" type="submit">Update</button>
+            <button onclick="deleteBtn(ID);" id="delete" type="button">Delete</button>
+        </form>
+    </div>    
+</div>

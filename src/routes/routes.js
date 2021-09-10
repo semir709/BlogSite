@@ -17,9 +17,12 @@ router.get('/qadmin', admin.userAccess, admin.getFullAccesAdmin);
 router.get('/dashboard', admin.dashboardLogout);
 router.get('/qdashboard', admin.dashboardLogout);
 router.get('/dashboard/getData', dash.getData);
+//router.post('/dashboard/getData', dash.getData);
 router.get('/dashboard/newTopic', dash.newTopic);
 router.get('/dashboard/myTopic', dash.myTopic);
 router.get('/dashboard/manageCom', dash.comments);
+router.delete('/dash/delete/:id', dash.deleteData);
+router.post('/dash/update/:id', dash.updateData);
 
 
 module.exports = router;
