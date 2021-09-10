@@ -152,24 +152,25 @@ function updateBtn(id, e) {
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(json);
 
-
-    // const updateBtn = document.getElementById('update'); 
-
-    // updateBtn.addEventListener('click', () => {
-    //     console.log('update');
-    // });
 }
 
 
-function deleteBtn(id) {               
+function deleteBtn(id) {     
     
+  
     let xhttp = new XMLHttpRequest();
     
     xhttp.onreadystatechange = function() {
         if(this.status == 200 && this.readyState == 4) {
             
             
-            display.innerHTML = this.responseText; 
+            if(this.responseText == 'false') {
+                alert(`You can't delete youreself`);
+
+            }
+            else {
+                display.innerHTML = this.responseText; 
+            }
             
         }
     }
