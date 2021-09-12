@@ -20,7 +20,7 @@
                     <td><%= d.admin_surname %></td>
                     <td><%= d.admin_mail %></td>
                     <td><%= d.time_reg %></td>
-                    <td><input onclick="return false;" type="checkbox" name="confrm" class="checkConfrm"  <%= d.confirmed == '1' ? 'checked' : ''%>></td>
+                    <td><input onclick="return false;" type="checkbox" name="confrm"  class="checkConfrm"  <%= d.confirmed == '1' ? 'checked' : ''%>></td>
                     <td><input onclick="return false;" type="checkbox" name="adminCheck" class="adminCheck"  <%= d.superAdmin == '1' ? 'checked' : ''%>></td>  
                 </tr>        
             <% }); %>        
@@ -45,7 +45,7 @@
             <input id="inputAdmin" type="checkbox" name="admin" >
             <br>
             <button onclick="updateBtn(ID, event)"  id="update" type="submit">Update</button>
-            <button onclick="deleteBtn(ID);" id="delete" type="button">Delete</button>
+            <button onclick="deleteBtn(ID, event);" id="delete" type="submit">Delete</button>
         </form>
     </div>    
 </div>

@@ -30,7 +30,9 @@ exports.deleteData = (req, res) => {
 
     const con = db.getCon();
 
-    if(req.params.id == req.user.admin_id) {
+    const data = req.body;
+
+    if(req.params.id == req.user.admin_id || data.admin == 'on') {
         res.send('false');
     }
     else {
@@ -51,32 +53,44 @@ exports.deleteData = (req, res) => {
     }
 }
 
-// Next we need to think it will admin have ability to 
-// change (update) others admin information or not and 
-// change information about yourself
+
 exports.updateData = (req, res) => {
     const con = db.getCon();
     const data = req.body;
+    const inputData = data.inputData;
+    const tableData = data.tableData;
 
-    data.confrm = custom.convertCheckBoxConfrm(data);
-    data.admin = custom.convertCheckBoxAdmin(data);
+    if(req.params.id == req.user.admin_id && ((tableData.confrm == true && inputData.confrm != 'on') || (tableData.admin == true && inputData.admin != 'on'))) {
+        res.send('false');
 
-    con.promise().query(`UPDATE admin_u SET admin_name = ? , admin_surname = ?, admin_mail = ?,
-     time_reg = ?, confirmed = ?, superAdmin = ? WHERE admin_id = ? `,
-     [
-         data.name,
-         data.lastName,
-         data.mail,
-         data.time,
-         data.confrm,
-         data.admin,
-         req.params.id
-     ]
-     ).then(() => {
-        con.promise().query('SELECT * FROM admin_u')
-        .then(data => {
-            
-            res.render('dashboard/adminManage.ejs', {data: data[0]});
-        });
-     }).catch((err) => {throw err.message});
+    }
+
+    else if(req.params.id != req.user.admin_id && tableData.admin == true) {
+        res.send('false');
+    }
+
+    else {
+        inputData.confrm = custom.convertCheckBoxConfrm(inputData);
+        inputData.admin = custom.convertCheckBoxAdmin(inputData);
+
+        con.promise().query(`UPDATE admin_u SET admin_name = ? , admin_surname = ?, admin_mail = ?,
+        time_reg = ?, confirmed = ?, superAdmin = ? WHERE admin_id = ? `,
+        [
+            inputData.name,
+            inputData.lastName,
+            inputData.mail,
+            inputData.time,
+            inputData.confrm,
+            inputData.admin,
+            req.params.id
+        ]
+        ).then(() => {
+            con.promise().query('SELECT * FROM admin_u')
+            .then(data => {
+                
+                res.render('dashboard/adminManage.ejs', {data: data[0]});
+            });
+        }).catch((err) => {throw err.message});
+    }
+
 }

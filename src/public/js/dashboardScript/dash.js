@@ -1,8 +1,11 @@
+//const { json } = require("express");
 
 
 const checkConfrm = document.getElementsByClassName('checkConfrm');
 const adminCheck = document.getElementsByClassName('adminCheck');
 
+let confrmStatus;
+let adminStatus;
 
 let delete_Btn = document.getElementById('delete');
 
@@ -91,6 +94,14 @@ function rowClick() {
                     table.rows[j].style.background = '';
                 }
                 table.rows[i].style.background = 'yellow';
+
+                let row = table.rows[i];
+                let tdAdmin = row.getElementsByTagName('td')[6];
+                let tdConfrm = row.getElementsByTagName('td')[5];
+
+                adminStatus = tdAdmin.getElementsByTagName('input')[0].checked;
+                confrmStatus = tdConfrm.getElementsByTagName('input')[0].checked;
+                
                 getDataFromRow(table.rows[i]);
             });
         }
@@ -137,35 +148,9 @@ function updateBtn(id, e) {
     
     xhttp.onreadystatechange = function() {
         if(this.status == 200 && this.readyState == 4) {
-            
-            
-            display.innerHTML = this.responseText; 
-            
-        }
-    }
-    //kaok ovo radi isod sta je dataForm
-    let object = {};
-    dataForm.forEach((value, key) => object[key] = value);
-    const json = JSON.stringify(object);
-    
-    xhttp.open('POST',`/dash/update/${id}`, true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(json);
 
-}
-
-
-function deleteBtn(id) {     
-    
-  
-    let xhttp = new XMLHttpRequest();
-    
-    xhttp.onreadystatechange = function() {
-        if(this.status == 200 && this.readyState == 4) {
-            
-            
             if(this.responseText == 'false') {
-                alert(`You can't delete youreself`);
+                alert(`You can't update user with permission admin`);
 
             }
             else {
@@ -174,9 +159,52 @@ function deleteBtn(id) {
             
         }
     }
+      
+
+    let object = {};
+    dataForm.forEach((value, key) => object[key] = value);
+    const json =  object; 
+    const obj = {inputData: json, tableData: {confrm: confrmStatus, admin: adminStatus}}
+
+    xhttp.open('POST',`/dash/update/${id}`, true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(obj));
+
+}
+
+
+function deleteBtn(id, e) {
+
+    e.preventDefault();
+
+    const form = document.getElementById('formShowData');
+
+    const dataForm = new FormData(form);
+  
+    let xhttp = new XMLHttpRequest();
+    
+    xhttp.onreadystatechange = function() {
+        if(this.status == 200 && this.readyState == 4) {
+            
+            
+            if(this.responseText == 'false') {
+                alert(`You can't delete user with permission admin`);
+
+            }
+            else {
+                display.innerHTML = this.responseText; 
+            }
+            
+        }
+    }
+
+    let object = {};
+    dataForm.forEach((value, key) => object[key] = value);
+    const json = JSON.stringify(object);
     
     xhttp.open('DELETE',`/dash/delete/${id}`, true);
-    xhttp.send();
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(json);
 }
 
 
