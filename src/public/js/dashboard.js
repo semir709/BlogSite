@@ -7,7 +7,9 @@ const manageComBtn = document.getElementById('manage_btn');
 const display = document.getElementById('display');
 
 adminM_btn.addEventListener('click', () => {
-    
+    clickA = 0;
+    clickH = 0;
+
     $.ajax({
         type:'GET',
         url:"/dashboard/getData",
@@ -21,6 +23,9 @@ adminM_btn.addEventListener('click', () => {
 
 
 newTopicBtn.addEventListener('click', () => {
+    clickA = 0;
+    clickH = 0;
+
     let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
@@ -35,6 +40,9 @@ newTopicBtn.addEventListener('click', () => {
 });
 
 myTopicBtn.addEventListener('click', () => {
+    clickA = 0;
+    clickH = 0;
+
     let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
@@ -49,6 +57,9 @@ myTopicBtn.addEventListener('click', () => {
 });
 
 manageComBtn.addEventListener('click', () => {
+    clickA = 0;
+    clickH = 0;
+    
     let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {

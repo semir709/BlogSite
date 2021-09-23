@@ -31,7 +31,6 @@ function getIds() {
     
 }
 
-
 display.addEventListener('mousedown', () => {
     getIds();
 
