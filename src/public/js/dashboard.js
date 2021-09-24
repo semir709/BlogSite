@@ -23,8 +23,7 @@ adminM_btn.addEventListener('click', () => {
 
 
 newTopicBtn.addEventListener('click', () => {
-    clickA = 0;
-    clickH = 0;
+    
 
     let xhttp = new XMLHttpRequest();
 
@@ -37,6 +36,10 @@ newTopicBtn.addEventListener('click', () => {
 
     xhttp.open('GET','/dashboard/newTopic', true);
     xhttp.send();
+
+    setTimeout(getVal, 100);
+    
+    
 });
 
 myTopicBtn.addEventListener('click', () => {

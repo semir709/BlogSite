@@ -18,23 +18,22 @@
 // let ID;
 //----------------------------------------------------------------------------------
 
-
-let textArea;
-let heading; 
-let article; 
-
-let clickH = 0;
-let clickA = 0;
-
 let main_img;
 let dialogUpload;
 
 function getVal() {
-  textArea = document.getElementsByTagName("textarea");
-  heading = document.getElementById('heading');
-  article = document.getElementById('article');
-  main_img = document.getElementById('main-img');
-  dialogUpload = document.getElementById('upload');
+  const heading = document.getElementById("heading");
+  const article = document.getElementById("article");
+  const main_img = document.getElementById('main-img');
+  const dialogUpload = document.getElementById('upload');
+
+  heading.addEventListener('input', OnInput);
+  heading.addEventListener('click', onClick);
+
+  article.addEventListener('input', OnInput);
+  article.addEventListener('click', onClick);
+
+  main_img.addEventListener('click', function() {dialogUpload.click()}); 
 
 }
 
@@ -44,56 +43,10 @@ function OnInput() {
   
 }
 
-function textAreaAutoSize() {
-    for (let i = 0; i < textArea.length; i++) {
-      textArea[i].addEventListener("input", OnInput, false);
-      
-    } 
+function onClick() {
+    this.innerHTML = "";
 }
 
-function whenMouseClick() {
-
-  if(heading) {
-    heading.addEventListener('click', () => {
-      if(clickH == 0) {
-        heading.innerHTML = " ";
-        clickH++;
-      }
-    });
-  }
-
-  if(article) {
-    article.addEventListener('click', ()=> {
-      if(clickA == 0) {
-        article.innerHTML = " ";
-        clickA++;
-      }
-    });
-  }
-
-}
-
-let i = 0;
-function imgClick() {
-  if(main_img) {
-    main_img.addEventListener('click', () => {
-      i++;
-      console.log(i);
-      dialogUpload.click();
-    });
-  }
-}
-
-window.addEventListener('load', () => {
-  getVal();
-   
-});
 
 
-display.addEventListener('mousedown', () => { 
-    getVal()
-    textAreaAutoSize();
-    whenMouseClick();
-    imgClick();
 
-});
