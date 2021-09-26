@@ -1,9 +1,5 @@
 //const { json } = require("express");
 
-
-const checkConfrm = document.getElementsByClassName('checkConfrm');
-const adminCheck = document.getElementsByClassName('adminCheck');
-
 let confrmStatus;
 let adminStatus;
 
@@ -19,7 +15,7 @@ let inputAdmin;
 
 let ID;
 
-function getIds() {
+function getValAdmin() {
 
     btn = document.getElementById('delete');
     inputName = document.getElementById('inputName');
@@ -28,26 +24,18 @@ function getIds() {
     inputTime = document.getElementById('inputTime');
     inputConfrm = document.getElementById('inputConfrm');
     inputAdmin = document.getElementById('inputAdmin');
-    
+
+    const checkConfrm = document.getElementsByClassName('checkConfrm');
+    const adminCheck = document.getElementsByClassName('adminCheck');
+
+    const table = document.getElementById('table-data');
+
+    rowClick(table);
+
+    disableInput(checkConfrm);
+    disableInput(adminCheck);
 }
 
-display.addEventListener('mousedown', () => {
-    getIds();
-
-    rowClick();
-    disableInputConfrm();
-    disableInputAdmin();
-
-    // updateBtn();
-    // console.log(ID);
-    // deleteBtn(ID);
-
-    // console.log(ID);
-
-      
-});
-
-//sending data from the table to the form ID:showData
 function getDataFromRow(row) {
     cell = row.getElementsByTagName('td');
 
@@ -74,66 +62,43 @@ function getDataFromRow(row) {
 
         
     }
+}
+
+function rowClick(table) {
+
+    for(let i = 1; i < table.rows.length; i++) {
+
+        table.rows[i].addEventListener('click', () => {
+            
+            for(let j = 0; j < table.rows.length; j++) {
+                table.rows[j].style.background = '';
+            }
+            table.rows[i].style.background = 'yellow';
+
+            let row = table.rows[i];
+            let tdAdmin = row.getElementsByTagName('td')[6];
+            let tdConfrm = row.getElementsByTagName('td')[5];
+
+            adminStatus = tdAdmin.getElementsByTagName('input')[0].checked;
+            confrmStatus = tdConfrm.getElementsByTagName('input')[0].checked;
+            
+            getDataFromRow(table.rows[i]);
+        });
+    }
+}
+
+function disableInput(checkBox) {
    
-
-}
-
-
-//when row is click
-function rowClick() {
-
-    
-    let table = document.getElementById('table-data');
-
-    if(table) {
-        for(let i = 1; i < table.rows.length; i++) {
-            table.rows[i].addEventListener('click', () => {
-                
-                for(let j = 0; j < table.rows.length; j++) {
-                    table.rows[j].style.background = '';
-                }
-                table.rows[i].style.background = 'yellow';
-
-                let row = table.rows[i];
-                let tdAdmin = row.getElementsByTagName('td')[6];
-                let tdConfrm = row.getElementsByTagName('td')[5];
-
-                adminStatus = tdAdmin.getElementsByTagName('input')[0].checked;
-                confrmStatus = tdConfrm.getElementsByTagName('input')[0].checked;
-                
-                getDataFromRow(table.rows[i]);
-            });
-        }
-    }
-
-}
-
-//this does not allow changes in inputs ID: showData while using inputs in ID: table-data
-//ID: table-data is set read-only in html
-function disableInputConfrm () {
-    if(checkConfrm) {
-        for(let i = 0; i < checkConfrm.length; i++) {
-            let c = checkConfrm[i].checked;
-            checkConfrm[i].addEventListener('click', () => {
-                checkConfrm[i].checked = c;
-           });
-        }
+    for(let i = 0; i < checkBox.length; i++) {
+        let c = checkBox[i].checked;
+        checkBox[i].addEventListener('click', () => {
+            checkBox[i].checked = c;
+            
+        });
     }
     
+    
 }
-
-function disableInputAdmin () {
-    if(adminCheck) {
-        for(let i = 0; i < adminCheck.length; i++) {
-            let c = adminCheck[i].checked;
-            adminCheck[i].addEventListener('click', () => {
-                adminCheck[i].checked = c;
-           });
-        }
-    }
-}
-
-//update and delete btn
 
 function updateBtn(id, e) {
 

@@ -7,8 +7,6 @@ const manageComBtn = document.getElementById('manage_btn');
 const display = document.getElementById('display');
 
 adminM_btn.addEventListener('click', () => {
-    clickA = 0;
-    clickH = 0;
 
     $.ajax({
         type:'GET',
@@ -18,6 +16,8 @@ adminM_btn.addEventListener('click', () => {
             
         }
     });
+
+    setTimeout(getValAdmin, 100);
 
 });
 
