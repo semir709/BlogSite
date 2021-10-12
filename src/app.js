@@ -55,6 +55,10 @@ app.use((req,res, next)=> {
     res.locals.succes_msg = req.flash('msgSuccess');
     res.locals.loginNoMsg_msg = req.flash('loginNoMail');
     res.locals.loginNoPass_msg = req.flash('loginNoPassword');
+    res.locals.error_0 = req.flash('msgError0'); 
+    res.locals.error_1 = req.flash('msgError1'); 
+    res.locals.error_2 = req.flash('msgError2'); 
+    res.locals.done_msg =  req.flash('msgImgSuccess'); 
     next();
 });
 

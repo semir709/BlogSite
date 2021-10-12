@@ -1,10 +1,7 @@
 #main-box {
-    width: 80%;
+    width: 100%;
     height:  720px;
-    margin: 0 auto;
     overflow: auto;
-    
-
 }
 
 #form-content {
@@ -18,8 +15,11 @@
 
 #main-img {
     width: 100%;
-    height: 100px;
+    min-height: 450px;
     background: darkblue;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 
 }
 
@@ -44,4 +44,17 @@ input[type=file] {
 #article {
     margin-top: 20px;
     font-size: 20px;
+    padding: 30px;
+}
+
+#buttons{
+    width: 50%;
+    margin: 30px auto;
+
+}
+
+
+#cancelArticle, #publish {
+    width: 130px;
+    margin-left: 10px;
 }

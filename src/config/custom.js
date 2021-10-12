@@ -2,6 +2,8 @@ let bcrypt = require('bcrypt');
 require('dotenv').config({path: '../.env'});
 let nodemailer = require('nodemailer');
 
+const multer = require('multer');
+
 
 const transport = nodemailer.createTransport({
     service:"Mailgun",
@@ -85,5 +87,21 @@ module.exports = {
          }
 
          return convData;
+     },
+
+     imageStorage: function() {
+         const storage = multer.diskStorage({
+             destination: (req, file, cb) => {
+                
+                 cb(null, 'public/img');
+             },
+             filename: (req, file, cb) => {
+                 
+                 cb(null, file.originalname);
+             }
+         })
+
+
+         return storage;
      }
 }

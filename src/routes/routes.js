@@ -6,6 +6,12 @@ let main = require('../controllers/main');
 let accuont = require('../controllers/account');
 const admin = require('../controllers/admin');
 const dash = require('../controllers/dashboard');
+const newTask = require('../controllers/newTask');
+// const custom = require('../config/custom')
+
+// const multer = require('multer');
+
+// const upload = multer({storage: custom.imageStorage()}).single('img');
 
 router.get('/', main.main);
 router.get('/login', accuont.login);
@@ -23,6 +29,6 @@ router.get('/dashboard/myTopic', dash.myTopic);
 router.get('/dashboard/manageCom', dash.comments);
 router.delete('/dash/delete/:id', dash.deleteData);
 router.post('/dash/update/:id', dash.updateData);
-
+router.post('/dash/newTask/upload', newTask.storeImg);
 
 module.exports = router;

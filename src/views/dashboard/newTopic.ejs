@@ -1,13 +1,18 @@
 
 <div id="main-box">
 
-    <form id="form-content" action="" method="get">
+    <form id="form-content" action="/dash/newTask/upload" method="POST" enctype="multipart/form-data">
         
-        <img id="main-img" src="" alt="main-Img"> 
-        <input id="upload" type="file">
+        <img  id="main-img" src="" alt="main-Img" height="400"> 
+        <input name="img" id="upload" type="file" accept="image/*" onchange="onFileSelected(event)">
         
         <textarea name="heading" id="heading" >You're header goes here...</textarea>
         <textarea name="article" id="article" cols="50" rows="20">Your text goes here...</textarea>
+        
+        <div id="buttons">
+            <button onclick="saveImg(event)" id="publish" >Publish</button>
+            <button onclick="articleCancled(event)" id="cancelArticle" >Cancel</button>
+        </div>
     </form>
 
 </div>
