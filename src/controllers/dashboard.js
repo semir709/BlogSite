@@ -16,8 +16,10 @@ exports.newTopic = async (req, res) => {
 }
 
 exports.myTopic = async (req, res) => {
-
-    res.render('dashboard/myTopic.ejs');
+    
+    const con = db.getCon()
+    const data = await con.promise().query('SELECT * FROM content WHERE user_id = ?', [req.user.admin_id]);
+    res.render('dashboard/myTopic.ejs', {data:data[0]});
 }
 
 exports.comments = async (req, res) => {

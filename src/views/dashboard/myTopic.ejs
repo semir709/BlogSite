@@ -1,1 +1,16 @@
-<h1>MyTopic</h1>
+
+<% data.forEach(d => { %>
+
+    <div class="box">
+        <img class="myTopic_img" src="/image/<%=d.img%>" alt="Img" >
+        <div class="myTopic_content">
+            <h1 class="myTopic_h1"><%= d.header %></h1>
+            <p class="myTopic_p1"><%=d.article %></p>
+        </div>
+        <div class="myTopic_buttons">
+            <button class="myTopic_showArticle_<%=d.content_id%>">Show Article</button>
+            <button class="myTopic_update_<%=d.content_id%>" onclick="myTopicButton_update(event)">Update</button>
+            <button class="myTopic_delete_<%=d.content_id%>" onclick="myTopicButton_delete(event)">Delete</button>
+        </div>
+    </div>     
+<% }); %> 

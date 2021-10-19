@@ -54,4 +54,33 @@ function articleCancled(e) {
 
 }
 
+function updateContent(event, value) {
+  event.preventDefault();
+  let f = document.getElementById('form-content');
+  let file = document.getElementById('upload');
+  let img = document.getElementById('main-img');
+
+  console.log(img.title);
+  //need to deal with when to update content without changing image when img became empty!!!
+  let id = value;
+
+  let form = new FormData(f);
+  form.append('img',file);
+  form.append('imgName', img.title);
+  form.append('id',id);
+
+  $.ajax({
+    url: '/myTask/Finalupdate',
+    data: form,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: 'POST',
+
+    success: function(data){
+        document.body.innerHTML = data;
+    }
+  });
+}
+
 

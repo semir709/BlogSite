@@ -7,11 +7,7 @@ let accuont = require('../controllers/account');
 const admin = require('../controllers/admin');
 const dash = require('../controllers/dashboard');
 const newTask = require('../controllers/newTask');
-// const custom = require('../config/custom')
-
-// const multer = require('multer');
-
-// const upload = multer({storage: custom.imageStorage()}).single('img');
+const myTopics = require('../controllers/myTopics');
 
 router.get('/', main.main);
 router.get('/login', accuont.login);
@@ -23,12 +19,13 @@ router.get('/qadmin', admin.userAccess, admin.getFullAccesAdmin);
 router.get('/dashboard', admin.dashboardLogout);
 router.get('/qdashboard', admin.dashboardLogout);
 router.get('/dashboard/getData', dash.getData);
-//router.post('/dashboard/getData', dash.getData);
 router.get('/dashboard/newTopic', dash.newTopic);
 router.get('/dashboard/myTopic', dash.myTopic);
 router.get('/dashboard/manageCom', dash.comments);
 router.delete('/dash/delete/:id', dash.deleteData);
 router.post('/dash/update/:id', dash.updateData);
 router.post('/dash/newTask/upload', newTask.storeImg);
-
+router.delete('/myTask/delete', myTopics.delete);
+router.post('/myTask/update', myTopics.update);
+router.post('/myTask/Finalupdate',myTopics.finalUpdateImg,myTopics.finalUpdateDb);
 module.exports = router;

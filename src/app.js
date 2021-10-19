@@ -16,6 +16,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use('/js', express.static('public/js'));
 app.use('/css', express.static('public/css'));
+app.use('/image', express.static('public/img'));
 app.use('/dashboard', express.static('views/dashboard'));
 
 
@@ -59,6 +60,8 @@ app.use((req,res, next)=> {
     res.locals.error_1 = req.flash('msgError1'); 
     res.locals.error_2 = req.flash('msgError2'); 
     res.locals.done_msg =  req.flash('msgImgSuccess'); 
+    res.locals.multer_errMsg =  req.flash('multerErrMsg'); 
+    res.locals.updateErrMsg = req.flash('msgUpdateErr');
     next();
 });
 

@@ -6,8 +6,7 @@ const manageComBtn = document.getElementById('manage_btn');
 
 const display = document.getElementById('display');
 
-adminM_btn.addEventListener('click', () => {
-
+function adminBtn() {
     $.ajax({
         type:'GET',
         url:"/dashboard/getData",
@@ -18,60 +17,44 @@ adminM_btn.addEventListener('click', () => {
     });
 
     setTimeout(getValAdmin, 100);
+}
 
-});
+function new_topicBtn() {
 
-
-newTopicBtn.addEventListener('click', () => {
-    
-
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if(this.status == 200 && this.readyState == 4) {
-
-            display.innerHTML = this.responseText;
+    $.ajax({
+        type:'GET',
+        url:"/dashboard/newTopic",
+        success: function(data) {
+            $('#display').html(data);
+            
         }
-    }
-
-    xhttp.open('GET','/dashboard/newTopic', true);
-    xhttp.send();
+    });
 
     setTimeout(getVal, 100);
-    
-    
-});
+}
 
-myTopicBtn.addEventListener('click', () => {
-    clickA = 0;
-    clickH = 0;
+function my_TopicBtn() {
 
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if(this.status == 200 && this.readyState == 4) {
-
-            display.innerHTML = this.responseText;
+    $.ajax({
+        type:'GET',
+        url:"/dashboard/myTopic",
+        success: function(data) {
+            $('#display').html(data);
+            
         }
-    }
-
-    xhttp.open('GET','/dashboard/myTopic', true);
-    xhttp.send();
-});
-
-manageComBtn.addEventListener('click', () => {
-    clickA = 0;
-    clickH = 0;
+    });
     
-    let xhttp = new XMLHttpRequest();
+}
 
-    xhttp.onreadystatechange = function() {
-        if(this.status == 200 && this.readyState == 4) {
-
-            display.innerHTML = this.responseText;
+function manageCom_btn() {
+   
+    $.ajax({
+        type:'GET',
+        url:"/dashboard/manageCom",
+        success: function(data) {
+            $('#display').html(data);
+            
         }
-    }
-
-    xhttp.open('GET','/dashboard/manageCom', true);
-    xhttp.send();
-});
+    });
+    
+}
