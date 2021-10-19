@@ -13,6 +13,7 @@ exports.getData = async (req, res) => {
 exports.newTopic = async (req, res) => {
 
     res.render('dashboard/newTopic.ejs');
+    
 }
 
 exports.myTopic = async (req, res) => {

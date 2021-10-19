@@ -4,13 +4,15 @@ const custom = require('../config/custom');
 
 exports.getAdmin = (req, res) => {
 
-    if(!req.user.superAdmin) {
-        res.render('admin', {name: req.user.admin_name});
-    }
+    // if(!req.user.superAdmin) {
+    //     res.render('admin', {name: req.user.admin_name});
+    // }
 
-    else {
-        res.redirect('/qadmin');
-    }
+    // else {
+    //     res.redirect('/qadmin');
+    // }
+
+    res.redirect('/qadmin');
 
 }
 
@@ -19,13 +21,18 @@ exports.getFullAccesAdmin = async (req, res) => {
     // const con = db.getCon()
     // const data = await con.promise().query('SELECT * FROM admin_u');
 
-    if(req.user.superAdmin) {
-        res.render('fullAdmin' /*{data:data[0] }*/); 
-    }
+    console.log(req.user.superAdmin);
+    const data = req.user.superAdmin;
 
-    else {
-        res.redirect('/admin');
-    }
+    res.render('fullAdmin', {data:data}); 
+
+    // if(req.user.superAdmin) {
+    //     res.render('fullAdmin', {data:data}); 
+    // }
+
+    // else {
+    //     res.redirect('/admin');
+    // }
     
 }
 

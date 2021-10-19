@@ -60,8 +60,8 @@ function updateContent(event, value) {
   let file = document.getElementById('upload');
   let img = document.getElementById('main-img');
 
-  console.log(img.title);
-  //need to deal with when to update content without changing image when img became empty!!!
+  // console.log(img.title);
+  //need to deal with when to update content without changing image when image became empty!!!
   let id = value;
 
   let form = new FormData(f);

@@ -25,13 +25,13 @@ exports.loginAuth = (req,res,next) =>{
 
 exports.loginPost = (req,res) => {
 
-    if(req.user.superAdmin) {
-        res.redirect('qadmin');
-    }
-
-    else {
-        res.redirect('/admin');
-    }
+    // if(req.user.superAdmin) {
+    //     res.redirect('qadmin');
+    // }
+    res.redirect('qadmin');
+    // else {
+    //     res.redirect('/admin');
+    // }
 }
 
 exports.createAc = (req, res) => {
@@ -110,7 +110,7 @@ exports.createAcPost = async (req, res) => {
             if(err) console.error(err);
         });
 
-        await custom.sendMail('Bpostmaster@sandbox777f9b2f03ce48c8aa012711fb7b34df.mailgun.org', 'Thanks for your intrest', mail, html);
+        // await custom.sendMail('Bpostmaster@sandbox777f9b2f03ce48c8aa012711fb7b34df.mailgun.org', 'Thanks for your intrest', mail, html);
 
         con.end();
 

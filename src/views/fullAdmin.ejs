@@ -17,7 +17,11 @@
 <body>
     
     <div id="main-nav">
+        <% if(data == 1) { %>
         <%- include('superDashboard.ejs') %>
+        <% } else { %>
+        <%- include('dashboard.ejs') %>
+        <% } %>
     </div>
 
     <div id="display">
