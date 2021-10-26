@@ -11,7 +11,7 @@ module.exports = (passport) => {
              
             con.promise().query('SELECT * FROM admin_u WHERE admin_mail = ?', [email])
             .then((result) => {
-                console.log(result[0][0].admin_password, 'db');
+                
                 if(result[0].length == 0) {
                     return done(null, false, {message:'No user found'});
                 }

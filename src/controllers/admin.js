@@ -21,7 +21,6 @@ exports.getFullAccesAdmin = async (req, res) => {
     // const con = db.getCon()
     // const data = await con.promise().query('SELECT * FROM admin_u');
 
-    console.log(req.user.superAdmin);
     const data = req.user.superAdmin;
 
     res.render('fullAdmin', {data:data}); 
