@@ -1,6 +1,7 @@
 body, html {
     width: 100%;
     margin: 0px;
+    font-family: "Roboto",sans-serif;
 }
 
 /*HEADER*/
@@ -81,7 +82,243 @@ body, html {
 }
 
 /*CONTENT*/
-
-#content {
+#contents {
+    /* display: grid; */
     max-width: 1080px;
+    margin: 0 auto;
+    /* grid-template-columns: 70% 30%;
+    grid-template-rows: auto auto; */
+}
+
+.content {
+    display: grid;
+    margin: 20px 0px;
+    width: 74%;
+    grid-template-columns: 35% 50%;
+    grid-template-rows: 150px;
+    float: left;
+    
+}
+
+.content .img {
+    /* background: red; */
+    height: 130px;
+}
+
+.content .left-flank{
+    /* background: blue; */
+    padding: 0px 20px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 60% 40%;
+}
+
+.content .left-flank .authorInfo {
+    padding-top: 5px;
+}
+
+.text h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0px;
+}
+
+.text h2 {
+    font-size: 15px;
+    opacity: 0.6;
+    font-weight: 400;
+    margin: 5px 0px 0px 0px;
+}
+.content .authorInfo div:first-child {
+    margin: 4px 0px;
+
+}
+
+.authorInfo div a {
+    color: white;
+    background: #21292F;
+    padding: 5px 20px;
+    border-radius: 10%;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.authorInfo p {
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+}
+
+/*SIDE ARTICLE*/
+
+#side-article {
+    display: inline-block;
+    width: 280px;
+}
+
+#text-side-article{
+
+}
+
+#side-content {
+    display:  inline-block;
+    margin: 0px 0px 20px 0px;
+}
+
+#text-side-article h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#text-side-article div {
+    border-top: solid black 2px;
+    width: 100%;
+    margin: 0px 0px 20px 0px;
+}
+
+#side-content p {
+    margin: 5px 0px;
+}
+
+/*bottom nav*/
+
+#bottom-nav {
+    max-width: 1080px;
+    margin: 10px auto;
+}
+
+#bottom-nav #line {
+    border-top: black solid 3px;
+    width: 100%;
+}
+
+#nav-num {
+    width: 100%;
+    text-align: center;
+}
+
+#nav-num ul {
+    list-style: none;
+}
+
+#nav-num ul li {
+    display: inline-block;
+    margin: 0px 10px;
+}  
+
+#nav-num ul li:first-child {
+    margin-right: 60px;
+}
+#nav-num ul li:last-child {
+    margin-left: 60px;
+}
+
+#nav-num ul li button {
+    width: 50px;
+    background: white;
+    border: solid black 1px;
+}
+
+/*FOOTER*/
+
+#footer {
+    width: 100%;
+    height: 400px;
+    background: #21292F;
+    margin: 80px 0px 0px 0px;
+    display: grid;
+    grid-template-columns: 35% 35% 35%;
+    color: white;
+    padding: 20px 0px 0px 20px;
+}
+
+#contactUs {
+    display: grid;
+    grid-template-columns: 10% 90%;
+}
+
+#contactUs #contactUs-line {
+    border-left: solid white 1px;
+    height: 60%;
+    display: inline-block;
+    margin: 80px 0px 0px 0px ;
+}
+
+#contactUs-line
+
+#contactUs #contactUs-info {
+    display: inline-block;
+}
+
+#contactUs #contactUs-info button {
+   display: block;
+   width: 240px;
+   border: solid black 1px;
+   background: white;
+   margin: 10px 0px;
+
+}
+
+
+#followUs{
+    display: grid;
+    grid-template-columns: 10% 90%;
+}
+
+#followUs #followUs-line {
+    border-left: solid white 1px;
+    height: 60%;
+    display: inline-block;
+    margin: 80px 0px 0px 0px ;
+}
+
+#followUs-info-content {
+    display: grid;
+    grid-template-columns: 20% 20%;
+}
+
+ #icons {
+   
+    
+}
+
+#icons button {
+   display: block;
+   margin: 16px 0px;
+    
+}
+
+#textSocial {
+   
+}
+
+#quickNav {
+    display: grid;
+    grid-template-columns: 10% 90%;
+}
+
+#quickNav #quickNav-line {
+    border-left: solid white 1px;
+    height: 60%;
+    display: inline-block;
+    margin: 80px 0px 0px 0px ;
+
+}
+
+#quickNav-text {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    
+}
+
+#copyRight {
+    background: #21292F;
+    color: white;
+    margin: 0;
+    border-top: solid #707070 1px ;
+}
+
+#copyRight p {
+    margin: 0px;
+    padding:10px;
+    font-size: 13px;
 }
