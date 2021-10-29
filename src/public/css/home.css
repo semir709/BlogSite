@@ -204,13 +204,17 @@ body, html {
 #contents {
     max-width: 1080px;
     margin: 0 auto;
+    display: grid;
+    grid: grid;
+    grid-template-columns: 800px 280px;
+    grid-template-rows: repeat(20%, 10);
 }
 
 .content {
     display: grid;
     margin: 20px 0px;
     width: 74%;
-    grid-template-columns: 35% 50%;
+    grid-template-columns: 46% 54%;
     grid-template-rows: 150px;
     float: left;
     

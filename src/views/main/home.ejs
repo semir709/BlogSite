@@ -57,133 +57,75 @@
     </div>
 
     <div id="dark-backgrund" onclick="clickDarkBack()"></div>
-
     <div id="main-article">
         <div id="left-side">
             <div id="first-img" >
-                <img src="/image/cpuImg.jpg" alt="first"  >
+                <img src="/image/<%=data[0].img%>" alt="first"  >
             </div>
             <div id="secend-img">
-                <img src="/image/rtx.jpg" alt="secend" >
+                <img src="/image/<%=data[1].img%>" alt="secend" >
             </div>
         </div>
         <div id="right-side">
             <div id="top">
                 <div id="top-left">
-                    <img src="/image/networking.jpg" alt="first"  >
+                    <img src="/image/<%=data[2].img%>" alt="first"  >
                 </div>
                 <div id="top-right">
-                    <img src="/image/a.jpg" alt="first"  >
+                    <img src="/image/<%=data[3].img%>" alt="first"  >
                 </div>
             </div>
             <div id="bottom">
-                <img src="/image/1.jpg" alt="first"  >
+                <img src="/image/<%=data[4].img%>" alt="first"  >
             </div>
         </div>
     </div>
 
     <div id="contents">
-        <div class="content">
-            <div class="img">
-                <img src="/image/pexels-kristina-paukshtite-1591252 (1).jpg" alt="hhh" width="270px" height="150px">
-            </div>
-            <div class="left-flank">
-                <div class="text">
-                    <h1>Somte header goes here</h1>
-                    <h2>clickbite text goes here</h2>
-                </div>
 
-                <div class="authorInfo">
-                    <div>
-                        <p>Author name</p>
-                        <p>date</p>
-                        <p>time</p>
+        <div class="left-content">
+            <% for(let i = 5; i < 15; i++) { %>
+                <div class="content">
+                    <div class="img">
+                        <img src="/image/<%=data[i].img%>" alt="hhh" width="270px" height="150px">
                     </div>
-
-                    <div>
-                        <p><a href="">tag1</a></p>
-                        <p><a href="">tag2</a></p>
-                        <p><a href="">tag3</a></p>
+                    <div class="left-flank">
+                        <div class="text">
+                            <h1><%=data[i].header%></h1>
+                            <h2>clickkble clickbit</h2>
+                        </div>
+        
+                        <div class="authorInfo">
+                            <div>
+                                <p><%=data[i].admin_name%>  <%= data[i].admin_surname%></p>
+                                <p><%=data[i].content_time.split(' ')[0] %></p>
+                                <p><%= data[i].content_time.split(' ')[1] %></p>
+                            </div>
+        
+                            <div>
+                                <p><a href="">tag1</a></p>
+                                <p><a href="">tag2</a></p>
+                                <p><a href="">tag3</a></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+        
+                <% } %>
         </div>
-
-        <div class="content">
-            <div class="img">
-                <img src="/image/pexels-kristina-paukshtite-1591252 (1).jpg" alt="hhh" width="270px" height="150px">
-            </div>
-            <div class="left-flank">
-                <div class="text">
-                    <h1>Somte header goes here</h1>
-                    <h2>clickbite text goes here</h2>
+        
+        <div class="right-content">
+            <div id="side-article">
+                <div id="text-side-article">
+                    <h1>Most viewd pages</h1>
+                    <div></div>
                 </div>
-
-                <div class="authorInfo">
-                    <div>
-                        <p>Author name</p>
-                        <p>date</p>
-                        <p>time</p>
-                    </div>
-
-                    <div>
-                        <p><a href="">tag1</a></p>
-                        <p><a href="">tag2</a></p>
-                        <p><a href="">tag3</a></p>
-                    </div>
+    
+                <div id="side-content">
+                    <div><img src="/image/pexels-kristina-paukshtite-1591252 (1).jpg" alt="aaa" width="280px" height="170px"></div>
+                    <p>text about imgage</p>
                 </div>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="img">
-                <img src="/image/pexels-kristina-paukshtite-1591252 (1).jpg" alt="hhh" width="270px" height="150px">
-            </div>
-            <div class="left-flank">
-                <div class="text">
-                    <h1>Somte header goes here</h1>
-                    <h2>clickbite text goes here</h2>
-                </div>
-
-                <div class="authorInfo">
-                    <div>
-                        <p>Author name</p>
-                        <p>date</p>
-                        <p>time</p>
-                    </div>
-
-                    <div>
-                        <p><a href="">tag1</a></p>
-                        <p><a href="">tag2</a></p>
-                        <p><a href="">tag3</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="side-article">
-            <div id="text-side-article">
-                <h1>Most viewd pages</h1>
-                <div></div>
-            </div>
-
-            <div id="side-content">
-                <div><img src="/image/pexels-kristina-paukshtite-1591252 (1).jpg" alt="aaa" width="280px" height="170px"></div>
-                <p>text about imgage</p>
-            </div>
-
-            <div id="side-content">
-                <div><img src="/image/pexels-kristina-paukshtite-1591252 (1).jpg" alt="aaa" width="280px" height="170px"></div>
-                <p>text about imgage</p>
-            </div>
-
-            <div id="side-content">
-                <div><img src="/image/pexels-kristina-paukshtite-1591252 (1).jpg" alt="aaa" width="280px" height="170px"></div>
-                <p>text about imgage</p>
-            </div>
-
-
+            </div>  
         </div>
 
 
