@@ -58,10 +58,11 @@ module.exports = {
         }
 
         else {
-
-            con.promise().query('UPDATE content SET header = ?, article = ?, img = ?, content_time = now() WHERE content_id = ?',
+    
+            con.promise().query('UPDATE content SET header = ?, clickbait = ?, article = ?, img = ?, content_time = now() WHERE content_id = ?',
             [
                 data.heading,
+                data.clickbait,
                 data.article,
                 data.imgName,
                 data.id

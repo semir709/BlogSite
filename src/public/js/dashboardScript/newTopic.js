@@ -3,10 +3,14 @@ function getVal() {
   const heading = document.getElementById("heading");
   const article = document.getElementById("article");
   const main_img = document.getElementById('main-img');
-  const dialogUpload = document.getElementById('upload'); 
+  const dialogUpload = document.getElementById('upload');
+  const clickbait = document.getElementById('clickbait'); 
 
   heading.addEventListener('input', OnInput);
   heading.addEventListener('click', onClick, {once:true});
+
+  clickbait.addEventListener('input', OnInput);
+  clickbait.addEventListener('click', onClick, {once:true});
 
   article.addEventListener('input', OnInput);
   article.addEventListener('click', onClick, {once:true});

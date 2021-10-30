@@ -27,22 +27,28 @@ input[type=file] {
     display: none;
 }
 
-#heading, #article {
+#heading, #article, #clickbait {
     border: none;
     outline: none;
     resize: none;
-    margin: 10px 0px;
 }
 
 #heading {
     font-size:30px;
     margin: 10px 0px;
     text-align: center;
+    height: auto;
     
 }
 
+#clickbait {
+    font-size: 20px;
+    text-align: center;
+    opacity: 0.5;
+}
+
 #article {
-    margin-top: 20px;
+    margin-top: 0px;
     font-size: 20px;
     padding: 30px;
 }

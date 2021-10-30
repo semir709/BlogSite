@@ -17,8 +17,8 @@ async function saveContent (inputValues, data, cb) {
             return cb(msg);
         }
         else {
-            con.promise().query('INSERT INTO content VALUES (0, ?, ?, ?, ?, now())',
-            [inputValues.user,data.heading, data.article, inputValues.image_name])
+            con.promise().query('INSERT INTO content VALUES (0, ?, ?, ?, ?, ?, now())',
+            [inputValues.user,data.heading, data.clickbait, data.article, inputValues.image_name])
             
             .then(() => {
                 

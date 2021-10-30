@@ -6,7 +6,7 @@ module.exports = {
         const con = db.getCon();
     
         let data = await con.promise().query(`
-        SELECT content.content_id, content.header, content.article, content.img, content.content_time,
+        SELECT content.content_id, content.header, content.clickbait, content.article, content.img, content.content_time,
         admin_u.admin_name, admin_u.admin_surname FROM content INNER JOIN admin_u ON content.user_id = admin_u.admin_id 
         ORDER BY content_id DESC`)
 
