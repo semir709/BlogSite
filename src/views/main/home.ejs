@@ -58,25 +58,83 @@
 
     <div id="dark-backgrund" onclick="clickDarkBack()"></div>
     <div id="main-article">
-        <div id="left-side">
-            <div id="first-img" >
-                <img src="/image/<%=data[0].img%>" alt="first"  >
+
+        <div id="leftFlank">
+            <div id="topLImg"  style="background-image: url('image/<%=data[0].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info ">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
+                </div>
             </div>
-            <div id="secend-img">
-                <img src="/image/<%=data[1].img%>" alt="secend" >
+            <div id="downLImg" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info rightTopAndleftBottom">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="right-side">
-            <div id="top">
-                <div id="top-left">
-                    <img src="/image/<%=data[2].img%>" alt="first"  >
-                </div>
-                <div id="top-right">
-                    <img src="/image/<%=data[3].img%>" alt="first"  >
+        <div id="midleFlank">
+            <div id="topLeft"style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
                 </div>
             </div>
-            <div id="bottom">
-                <img src="/image/<%=data[4].img%>" alt="first"  >
+            <div id="topRight" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo" >
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="downLeft" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="downRight" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo" >
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rightFlank">
+            <div id="topRImg"  style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info rightTopAndleftBottom" >
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="downRImg" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>Do you know what Intel building?</h1>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -84,9 +142,9 @@
     <div id="contents">
 
         <div class="left-content">
-            <% for(let i = 5; i < 15; i++) { %>
+            <% for(let i = 0; i < 1; i++) { %>
                 <div class="content">
-                    <div class="img">
+                    <div class="img" >
                         <img src="/image/<%=data[i].img%>" alt="hhh" width="270px" height="150px">
                     </div>
                     <div class="left-flank">
