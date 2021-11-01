@@ -13,7 +13,6 @@
     <title>Home</title>
 </head>
 <body>
-    <!-- <h1><%=data[0].header%></h1> -->
     <div id="main-header">
         <div id="logo-div">
             <img src="" alt="img.jpg">
@@ -60,90 +59,202 @@
     <div id="main-article">
 
         <div id="leftFlank">
+            <% if(typeof data[0] == 'object'){ %>
             <div id="topLImg"  style="background-image: url('image/<%=data[0].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info ">
                         <p>tag</p>
                         <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
+                        <h1><%= data[0].header %></h1>
                     </div>
                 </div>
             </div>
-            <div id="downLImg" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+            <% } else { %> 
+            <div id="topLImg"  style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info ">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>None</h1>
+                    </div>
+                </div>
+            </div>
+                <% } %>
+
+            <% if(typeof data[1] == 'object'){ %>
+            <div id="downLImg" style="background-image: url('image/<%=data[1].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info rightTopAndleftBottom">
                         <p>tag</p>
                         <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
+                        <h1><%= data[1].header %></h1>
                     </div>
                 </div>
             </div>
+            <% } else { %> 
+            <div id="downLImg" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info rightTopAndleftBottom">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>None</h1>
+                    </div>
+                </div>
+            </div>
+            <% } %>    
         </div>
         <div id="midleFlank">
-            <div id="topLeft"style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+            <% if(typeof data[2] == 'object'){ %>
+            <div id="topLeft"style="background-image: url('image/<%=data[2].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo">
                         <p>tag</p>
                         <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
+                        <h1><%= data[2].header %></h1>
                     </div>
                 </div>
             </div>
-            <div id="topRight" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-                <div class="dark-back">
-                    <div class="artc-info midInfo" >
-                        <p>tag</p>
-                        <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
-                    </div>
-                </div>
-            </div>
-            <div id="downLeft" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+           <% } else { %>
+            <div id="topLeft"style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo">
                         <p>tag</p>
                         <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
+                        <h1>none</h1>
                     </div>
                 </div>
             </div>
-            <div id="downRight" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+            <% } %>
+
+            <% if(typeof data[3] == 'object'){ %>
+            <div id="topRight" style="background-image: url('image/<%=data[3].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo" >
                         <p>tag</p>
                         <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
+                        <h1><%= data[3].header %></h1>
                     </div>
                 </div>
             </div>
+
+            <% } else { %>
+            <div id="topRight" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo" >
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>none</h1>
+                    </div>
+                </div>
+            </div>
+             <% } %>   
+
+             <% if(typeof data[4] == 'object'){ %>
+            <div id="downLeft" style="background-image: url('image/<%=data[4].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1><%= data[4].header%></h1>
+                    </div>
+                </div>
+            </div>
+            <% } else { %>
+            <div id="downLeft" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo">
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>none</h1>
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+            <% if(typeof data[5] == 'object'){ %>
+            <div id="downRight" style="background-image: url('image/<%=data[5].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo" >
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1><%= data[5].header %></h1>
+                    </div>
+                </div>
+            </div>
+
+            <% } else { %> 
+
+            <div id="downRight" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                <div class="dark-back">
+                    <div class="artc-info midInfo" >
+                        <p>tag</p>
+                        <p>tag</p>
+                        <h1>none</h1>
+                    </div>
+                </div>
+            </div> 
+
+            <% } %>
         </div>
         <div id="rightFlank">
-            <div id="topRImg"  style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+            <% if(typeof data[6] == 'object'){ %>
+            <div id="topRImg"  style="background-image: url('image/<%=data[6].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info rightTopAndleftBottom" >
                         <p>tag</p>
                         <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
+                        <h1><%= data[6].header %></h1>
                     </div>
                 </div>
             </div>
-            <div id="downRImg" style="background-image: url('image/g.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+            <% } else { %>
+                <div id="topRImg"  style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    <div class="dark-back">
+                        <div class="artc-info rightTopAndleftBottom" >
+                            <p>tag</p>
+                            <p>tag</p>
+                            <h1>none</h1>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+
+            <% if(typeof data[7] == 'object'){ %>
+            <div id="downRImg" style="background-image: url('image/<%=data[7].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info">
                         <p>tag</p>
                         <p>tag</p>
-                        <h1>Do you know what Intel building?</h1>
+                        <h1><%= data[7].header %></h1>
                     </div>
                 </div>
             </div>
+
+            <% } else { %>
+                <div id="downRImg" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    <div class="dark-back">
+                        <div class="artc-info">
+                            <p>tag</p>
+                            <p>tag</p>
+                            <h1>none</h1>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
         </div>
     </div>
 
     <div id="contents">
-
+        
         <div class="left-content">
-            <% for(let i = 0; i < 1; i++) { %>
+            <% for(let i = 8; i < data.length && i < 18; i++) { %>
+
                 <div class="content">
+                    
                     <div class="img" >
                         <img src="/image/<%=data[i].img%>" alt="hhh" width="270px" height="150px">
                     </div>
