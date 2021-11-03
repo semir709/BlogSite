@@ -374,6 +374,12 @@ body, html {
 
 }
 
+#nav-num button:hover {
+    cursor: pointer;
+    background: #fc8f00;
+    color: white;
+}
+
 #nav-num button:first-child {
     width: 80px;
 }

@@ -1,0 +1,68 @@
+<div class="left-content">
+    <% if(firstPage) { %>
+    <% for(let i = 8; i < data.length && i < 18; i++) { %>
+
+        <div class="content">
+            
+            <div class="img" >
+                <img src="/image/<%=data[i].img%>" alt="hhh" width="270px" height="150px">
+            </div>
+            <div class="left-flank">
+                <div class="text">
+                    <h1><%=data[i].header%></h1>
+                    <h2><%=data[i].clickbait%></h2>
+                </div>
+
+                <div class="authorInfo">
+                    <div>
+                        <p><%=data[i].admin_name%>  <%= data[i].admin_surname%></p>
+                        <p><%=data[i].content_time.split(' ')[0] %></p>
+                        <p><%= data[i].content_time.split(' ')[1] %></p>
+                    </div>
+
+                    <div>
+                        <p><a href="">tag1</a></p>
+                        <p><a href="">tag2</a></p>
+                        <p><a href="">tag3</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } %>
+
+    <% } else { %>
+
+        <% for(let i = 0; i < data.length; i++) { %>
+
+            <div class="content">
+                
+                <div class="img" >
+                    <img src="/image/<%=data[i].img%>" alt="hhh" width="270px" height="150px">
+                </div>
+                <div class="left-flank">
+                    <div class="text">
+                        <h1><%=data[i].header%></h1>
+                        <h2><%=data[i].clickbait%></h2>
+                    </div>
+    
+                    <div class="authorInfo">
+                        <div>
+                            <p><%=data[i].admin_name%>  <%= data[i].admin_surname%></p>
+                            <p><%=data[i].content_time.split(' ')[0] %></p>
+                            <p><%= data[i].content_time.split(' ')[1] %></p>
+                        </div>
+    
+                        <div>
+                            <p><a href="">tag1</a></p>
+                            <p><a href="">tag2</a></p>
+                            <p><a href="">tag3</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <% } %>
+        <% } %>    
+
+</div>

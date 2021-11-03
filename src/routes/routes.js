@@ -10,6 +10,7 @@ const newTask = require('../controllers/newTask');
 const myTopics = require('../controllers/myTopics');
 
 router.get('/', main.main);
+router.get('/home', main.main);
 router.get('/login', accuont.login);
 router.post('/login',accuont.loginAuth, accuont.loginPost);
 router.get('/login/create', accuont.createAc);
@@ -33,4 +34,6 @@ router.get('/software', main.software);
 router.get('/network', main.network);
 router.get('/code', main.code);
 router.get('/about', main.aboutUs);
+router.get('/page/', main.listingPages);
+
 module.exports = router;

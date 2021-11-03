@@ -103,5 +103,32 @@ module.exports = {
 
 
          return storage;
+     },
+
+     loadingNextPage(pagePar, data) {
+         let firstPage;
+         let rows;
+         let page;
+
+        if(typeof pagePar == 'undefined') {
+            page = 1;
+            rows = 18;
+            firstPage = true;
+        }
+
+        else {
+            page = pagePar
+            rows = 18;
+            firstPage = false;
+        }
+
+        let indexStart = (page - 1) * rows;
+        let indexEnd = indexStart + rows;
+
+        let trimData = data[0].slice(indexStart, indexEnd);
+
+        let pages = Math.ceil(data[0].length / rows);
+
+        return {trimData, pages, firstPage}
      }
 }

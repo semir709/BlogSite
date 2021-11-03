@@ -13,47 +13,9 @@
     <title>Home</title>
 </head>
 <body>
-    <div id="main-header">
-        <div id="logo-div">
-            <img src="" alt="img.jpg">
-        </div>
-        <ul id="main-ul">
-            <li class="main_list"><a class="hrefMainList" href="/hardware">Hardware</a></li>
-            <li class="main_list"><a class="hrefMainList" href="/software" >Software</a></li>
-            <li class="main_list"><a class="hrefMainList" href="/network" >Network</a></li>
-            <li class="main_list"><a class="hrefMainList" href="/code">Code</a></li>
-            <li class="main_list" id="drop-nav" onclick="dropDownList()">
-                <p>Other</p>
-                <div id="nav-other">
-                    <div id="container-nav-other-tags">
-                        <div class="tagsHref">
-                            <ul class="nav-other-menu">
-                                <li class="tag"><a class="tagHref" href="">Tag1</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag2</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag3</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag4</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag5</a></li>
-                        
-                            </ul>
-                        </div>
-    
-                        <div class="tagsHref">
-                            <ul class="nav-other-menu">
-                                <li class="tag"><a class="tagHref" href="">Tag1</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag2</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag3</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag4</a></li>
-                                <li class="tag"><a class="tagHref" href="">Tag5</a></li>
-                        
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
 
-        <a href="/about">About Us</a>
-    </div>
+    <%-include('../partials/main/header')%>
+    
 
     <div id="dark-backgrund" onclick="clickDarkBack()"></div>
     <div id="main-article">
@@ -250,38 +212,7 @@
 
     <div id="contents">
         
-        <div class="left-content">
-            <% for(let i = 8; i < data.length && i < 18; i++) { %>
-
-                <div class="content">
-                    
-                    <div class="img" >
-                        <img src="/image/<%=data[i].img%>" alt="hhh" width="270px" height="150px">
-                    </div>
-                    <div class="left-flank">
-                        <div class="text">
-                            <h1><%=data[i].header%></h1>
-                            <h2><%=data[i].clickbait%></h2>
-                        </div>
-        
-                        <div class="authorInfo">
-                            <div>
-                                <p><%=data[i].admin_name%>  <%= data[i].admin_surname%></p>
-                                <p><%=data[i].content_time.split(' ')[0] %></p>
-                                <p><%= data[i].content_time.split(' ')[1] %></p>
-                            </div>
-        
-                            <div>
-                                <p><a href="">tag1</a></p>
-                                <p><a href="">tag2</a></p>
-                                <p><a href="">tag3</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <% } %>
-        </div>
+        <%-include('../partials/main/mainContent')%>
         
         <div class="right-content">
             <div id="side-article">
@@ -300,74 +231,10 @@
 
     </div>
 
-    <div id="bottom-nav">
-        <div id="line"></div>
-        <div id="nav-num">
-            <button><</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>10</button>
-            <button>></button>
-        </div>
-    </div>
+    <%-include('../partials/main/pageNav')%>
 
-    <div id="footer">
-        <div id="contactUs">
-            <div id="contactUs-line"></div>
-            <div id="contactUs-info">
-                <h1>Contact Us</h1>
-                <div id="contact-btt">
-                    <button>E-mail</button>
-                    <button>000-000-000</button>
-                </div>
-            </div>
-
-        </div>
-        <div id="followUs">
-            <div id="followUs-line"></div>
-            <div id="followUs-info">
-                <h1>Follow Us</h1>
-                <div id="followUs-info-content">
-                    <div id="icons">
-                        <button>ff</button>
-                        <button>tt</button>
-                        <button>ii</button>
-                    </div>
-                    <div id="textSocial">
-                        <p>Facebook</p>
-                        <p>Twitter</p>
-                        <p>Instagram</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div id="quickNav">
-            <div id="quickNav-line"></div>
-            <div id="quickNav-content">
-                <h1>Quick Navigation</h1>
-                <div id="quickNav-text">
-                    <p>Home</p>
-                    <p>Hardwer</p>
-                    <p>Softwer</p>
-                    <p>Network</p>
-                    <p>Code</p>
-                    <p>About Us</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="copyRight">
-        <p>© 2021 Company name, Inc. All Rights Reserved.</p>
-    </div>
+    <%-include('../partials/main/footer')%>
+    
 
     <script src="js/home.js"></script>
     <script src="js/mainHeader.js"></script>
