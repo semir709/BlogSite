@@ -109,6 +109,7 @@ module.exports = {
          let firstPage;
          let rows;
          let page;
+         let maxDisplyButt = 9;
 
         if(typeof pagePar == 'undefined') {
             page = 1;
@@ -129,6 +130,25 @@ module.exports = {
 
         let pages = Math.ceil(data[0].length / rows);
 
-        return {trimData, pages, firstPage}
+        let maxLeft = (page - Math.floor(maxDisplyButt / 2));
+        let maxRight = (parseInt(page) + Math.floor(maxDisplyButt / 2));
+
+
+        if(maxLeft < 1) {
+            maxLeft = 1;
+            maxRight = maxDisplyButt;
+        }
+
+        if(maxRight > pages) {
+            maxLeft = pages - (maxDisplyButt - 1);
+
+            maxRight = pages;
+
+            if(maxLeft < 1) {
+                maxLeft = 1;
+            }
+        }
+
+        return {trimData, pages, firstPage, maxLeft, maxRight}
      }
 }

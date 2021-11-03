@@ -12,8 +12,9 @@ module.exports = {
         ORDER BY content_id DESC`);
 
         let dataObj = custom.loadingNextPage(req.query.pa, data);
+
         
-        res.render('main/home.ejs', {data:dataObj.trimData, firstPage: dataObj.firstPage, pages:dataObj.pages});
+        res.render('main/home.ejs', {data:dataObj.trimData, firstPage: dataObj.firstPage, pages:dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight});
     },
 
     listingPages: async function(req, res) {
@@ -26,8 +27,8 @@ module.exports = {
         ORDER BY content_id DESC`);
 
         let dataObj = custom.loadingNextPage(req.query.pa, data);
-        
-        res.render('main/nextPage.ejs', {data: dataObj.trimData, firstPage: dataObj.firstPage, pages: dataObj.pages}); 
+        // console.log(dataObj.maxLeft);
+        res.render('main/nextPage.ejs', {data: dataObj.trimData, firstPage: dataObj.firstPage, pages: dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight}); 
         
         
     },
