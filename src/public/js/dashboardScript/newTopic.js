@@ -1,3 +1,6 @@
+// const { head } = require("../../../routes/routes");
+
+// const { head } = require("../../../routes/routes");
 
 function getVal() {
   const heading = document.getElementById("heading");
@@ -5,6 +8,11 @@ function getVal() {
   const main_img = document.getElementById('main-img');
   const dialogUpload = document.getElementById('upload');
   const clickbait = document.getElementById('clickbait'); 
+  const formContent = document.getElementById('form-content');
+  const input = document.querySelector('.main-input');
+
+  formContent.addEventListener('keydown', disallowedEnter); // sometimes this just not include (error)
+  input.addEventListener('keyup', inputEvent);
 
   heading.addEventListener('input', OnInput);
   heading.addEventListener('click', onClick, {once:true});
@@ -58,6 +66,29 @@ function articleCancled(e) {
 
 }
 
+function savingData(event) {
+  event.preventDefault();
+
+  const f = document.getElementById('form-content');
+  let form = new FormData(f);
+
+  tagArray.forEach((item) => form.append("tags[]", item));
+
+  $.ajax({
+    url: '/dash/newTask/upload',
+    data: form,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: 'POST',
+
+    success: function(data){
+        document.body.innerHTML = data;
+    }
+  });
+  
+}
+
 function updateContent(event, value) {
   event.preventDefault();
   let f = document.getElementById('form-content');
@@ -68,10 +99,14 @@ function updateContent(event, value) {
   //need to deal with when to update content without changing image when image became empty!!!
   let id = value;
 
+  // let tagObj = Object.assign({},tagArray);
+  // let s = 'asdsad';
+
   let form = new FormData(f);
   form.append('img',file);
   form.append('imgName', img.title);
   form.append('id',id);
+
 
   $.ajax({
     url: '/myTask/Finalupdate',
@@ -87,4 +122,82 @@ function updateContent(event, value) {
   });
 }
 
+function disallowedEnter(e) {
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    return false;
+}
+} 
+
+function createTag(value) {
+  let div = document.createElement('div');
+  let span = document.createElement('span');
+  let close = document.createElement('span');
+
+
+  div.setAttribute('class', 'tag');
+  close.setAttribute('class', 'material-icons');
+  close.setAttribute('data-item', value);
+  close.addEventListener('click', closeTag);
+
+  span.innerHTML= value;
+  close.innerHTML = 'close';
+
+  div.appendChild(span);
+  div.appendChild(close);
+
+  return div;
+}
+
+let tagArray = [];
+
+function addTag() {
+  reset();
+  let tagCont = document.querySelector('.tagCont');
+
+
+  tagArray.slice().reverse().forEach(function(t) {
+    let tag = createTag(t);
+    tagCont.prepend(tag);
+  });
+}
+
+function inputEvent(e) {
+  let value = e.target.value;
+  let tagCont = document.querySelector('.tagCont');
+
+  if(e.target.offsetWidth < 100) {
+    
+    let width = tagCont.clientWidth;
+    tagCont.style.width =  (width + 100) + 'px';
+
+  } 
+
+  if(e.key === 'Enter') {
+    tagArray.push(value);
+    addTag();
+    e.target.value = "";
+
+  }
+
+
+}
+
+function closeTag(e) {
+  let closeBtn = e.target;
+  
+  let value = closeBtn.getAttribute('data-item');
+  let index = tagArray.indexOf(value);
+
+  tagArray = [...tagArray.slice(0, index), ...tagArray.slice(index + 1)];
+
+  addTag();
+  
+}
+
+function reset() {
+  document.querySelectorAll('.tag').forEach(function(t) {
+    t.parentElement.removeChild(t);
+  });
+}
 

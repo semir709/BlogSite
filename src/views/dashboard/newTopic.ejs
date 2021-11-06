@@ -7,6 +7,12 @@
             <img  id="main-img" src="/image/<%=data.img%>" alt="main-Img" onclick="imgClick()" height="400"> 
             <input name="img"  id="upload" type="file" accept="image/*"  onchange="onFileSelected(event)">
             
+            <div class="tagBox">
+                <div class="tagCont">
+
+                    <input class="main-input" type="text">
+                </div>
+            </div>
             <textarea name="heading" id="heading" ><%=data.header%></textarea>
             <textarea name="clickbait" id="clickbait"><%= data.clickbait%></textarea> 
             <textarea name="article" id="article" cols="50" rows="20"><%=data.article%></textarea>
@@ -27,13 +33,20 @@
             
             <img  id="main-img" src="" alt="main-Img" onclick="imgClick()" height="400"> 
             <input name="img" id="upload" type="file" accept="image/*"  onchange="onFileSelected(event)">
+
+            <div class="tagBox">
+                <div class="tagCont">
+
+                    <input class="main-input" type="text">
+                </div>
+            </div>
             
             <textarea name="heading" id="heading" onclick="headingInput()" >You're header goes here...</textarea>
             <textarea name="clickbait" id="clickbait">clickbait goes here</textarea>
             <textarea name="article" id="article" cols="50" rows="20">Your text goes here...</textarea>
             
             <div id="buttons">
-                <button onclick="saveImg(event)" id="publish" >Publish</button>
+                <button onclick="savingData(event)" id="publish" >Publish</button>
                 <button onclick="articleCancled(event)" id="cancelArticle" >Cancel</button>
             </div>
         </form>

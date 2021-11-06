@@ -52,6 +52,8 @@ module.exports = {
         let data = req.body;
         let con = db.getCon();
 
+        console.log(data);
+
         if(req.Errmsg) {
             req.flash('multerErrMsg', 'Img is not saved!!!');
             res.redirect('/qadmin');

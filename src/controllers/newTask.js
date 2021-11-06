@@ -8,32 +8,43 @@ async function saveContent (inputValues, data, cb) {
     const con = db.getCon();
     let msg;
 
-    con.promise().query('SELECT * FROM content WHERE img = ?', [inputValues.image_name])
-    .then(res => {
+    try {
+        let imgRes = await con.promise().query('SELECT * FROM content WHERE img = ?', [inputValues.image_name]).catch(err => {
+            console.log(err);
+            msg = "error 1"
+            return msg;
+        });
 
-        if(res[0].length > 0) {
-            
-            msg = 'error 0';
-            return cb(msg);
-        }
-        else {
-            con.promise().query('INSERT INTO content VALUES (0, ?, ?, ?, ?, ?, now())',
-            [inputValues.user,data.heading, data.clickbait, data.article, inputValues.image_name])
-            
-            .then(() => {
-                
-                msg = 'done';
+        let contentRes = await con.promise().query('INSERT INTO content VALUES (0, ?, ?, ?, ?, ?, now())',
+        [inputValues.user,data.heading, data.clickbait, data.article, inputValues.image_name]).catch(err => {
+            console.log(err);
+            msg = "error 2"
+            return msg;
+        });
 
-                return cb(msg);
-            
-            }).catch(err => {
-                
-                msg = 'error 1';
-                return cb(msg);
-            });
-        }
+        let tagsRes = await con.promise().query('INSERT INTO tags VALUES (0,?)', [JSON.stringify(data.tags)]).catch(err => {
+            console.log(err);
+            msg = "error 3"
+            return msg;
+        });
 
-    }).catch(err => {console.log(err); msg = 'error 2';return cb(msg);});
+        let contentId = contentRes[0].insertId;
+        let tagtId = tagsRes[0].insertId;;
+
+        let contentTags = await con.promise().query('INSERT INTO content_tags VALUES (0,?,?)', [contentId, tagtId]).catch(err => {
+            console.log(err);
+            msg = "error 4"
+            return msg;
+        });
+
+        msg = 'done';
+        return cb(msg);
+
+    } catch(e) {
+        console.log(e);
+        msg = 'error 0';
+        return msg;
+    }
 
 }
 
@@ -57,17 +68,23 @@ module.exports = {
                     image_name: imageName,
                     user: req.user.admin_id
                  }
-               
+                    
                     saveContent(inputValues,req.body, function(data) {
 
                         if(data == 'error 0') {
-                            req.flash('msgError0', 'The Image already exist in database');
+                            req.flash('msgError0', 'something is wrong');
                         }
                         if(data == 'error 1') {
                             req.flash('msgError1', 'Error when saving the image to database');
                         }
                         if(data == 'error 2') {
-                            req.flash('msgError2', 'Error when searching for the image');
+                            req.flash('msgError2', 'Error while inserting data in the dataBase');
+                        }
+                        if(data == 'error 3') {
+                            req.flash('msgError3', 'Error while inserting tags in the dataBase');
+                        }
+                        if(data == 'error 4') {
+                            req.flash('msgError4', 'Error while connecting tags with the content');
                         }
                         if(data == 'done') {
                             req.flash('msgImgSuccess', 'The article is published');
