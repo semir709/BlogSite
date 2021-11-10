@@ -203,7 +203,7 @@ function closeTag(e) {
 
   tagArray = [...tagArray.slice(0, index), ...tagArray.slice(index + 1)];
 
-  if(newArr) {
+  if(typeof newArr != 'undefined') {
     newArr = tagArray.join(',');
   }
 
