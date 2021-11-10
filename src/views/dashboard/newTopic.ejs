@@ -10,7 +10,22 @@
             <div class="tagBox">
                 <div class="tagCont">
 
-                    <input class="main-input" type="text">
+                    <script>
+                            newArr = '<%- contentTags%>';
+                        if(newArr) {
+                            tagArray = newArr.split(',');
+                        }
+                     </script>
+
+                    <% if(typeof contentTags !== 'undefined') { %>
+                        <% contentTags.forEach(t => { %>    
+                            <div class="tag" data-tag="<%=t%>" style="display: flex;">
+                                <span><%=t%></span>
+                                <span class="material-icons" data-item="<%=t%>" onclick="closeTag(event)">close</span>
+                            </div>
+                        <% }) %>
+                    <% } %> 
+                    <input class="main-input" type="text" >
                 </div>
             </div>
             <textarea name="heading" id="heading" ><%=data.header%></textarea>
@@ -37,7 +52,7 @@
             <div class="tagBox">
                 <div class="tagCont">
 
-                    <input class="main-input" type="text">
+                    <input class="main-input" type="text" >
                 </div>
             </div>
             

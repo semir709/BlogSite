@@ -6,6 +6,20 @@
         <div class="myTopic_content">
             <h1 class="myTopic_h1"><%= d.header %></h1>
             <p class="myTopic_p1"><%=d.clickbait %></p>
+            
+            
+            <div class="tags">
+                <% if(d.tag !== null) { %>
+                    <% JSON.parse(d.tag).forEach(t => { %>
+                        
+                        <div class="tag tag-myTopic" data-item="<%=t%>">
+                            <span><%=t%></span>
+                        </div>
+                        
+                    <% })  %>
+                <% } %>
+            </div>
+            
         </div>
         <div class="myTopic_buttons">
             <button class="myTopic_showArticle_<%=d.content_id%>">Show Article</button>

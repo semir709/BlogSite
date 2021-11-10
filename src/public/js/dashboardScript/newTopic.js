@@ -3,6 +3,7 @@
 // const { head } = require("../../../routes/routes");
 
 function getVal() {
+  let newArr;
   const heading = document.getElementById("heading");
   const article = document.getElementById("article");
   const main_img = document.getElementById('main-img');
@@ -86,6 +87,8 @@ function savingData(event) {
         document.body.innerHTML = data;
     }
   });
+
+  tagArray = [];
   
 }
 
@@ -95,17 +98,23 @@ function updateContent(event, value) {
   let file = document.getElementById('upload');
   let img = document.getElementById('main-img');
 
-  // console.log(img.title);
-  //need to deal with when to update content without changing image when image became empty!!!
+  let imgTitle = img.src.split('image/')[1];
   let id = value;
 
-  // let tagObj = Object.assign({},tagArray);
-  // let s = 'asdsad';
-
   let form = new FormData(f);
+
+  tagArray.forEach((item) => form.append("tags[]", item));
+
   form.append('img',file);
-  form.append('imgName', img.title);
+  
+  if(JSON.stringify(imgTitle).length > 30) {
+    form.append('imgName', img.title);  
+  }
+  else {
+    form.append('imgName', imgTitle);
+  }
   form.append('id',id);
+  
 
 
   $.ajax({
@@ -120,6 +129,8 @@ function updateContent(event, value) {
         document.body.innerHTML = data;
     }
   });
+
+  tagArray = [];
 }
 
 function disallowedEnter(e) {
@@ -189,7 +200,12 @@ function closeTag(e) {
   let value = closeBtn.getAttribute('data-item');
   let index = tagArray.indexOf(value);
 
+
   tagArray = [...tagArray.slice(0, index), ...tagArray.slice(index + 1)];
+
+  if(newArr) {
+    newArr = tagArray.join(',');
+  }
 
   addTag();
   

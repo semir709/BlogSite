@@ -13,13 +13,20 @@ exports.getData = async (req, res) => {
 exports.newTopic = async (req, res) => {
 
     res.render('dashboard/newTopic.ejs');
-    
+
 }
 
 exports.myTopic = async (req, res) => {
-    
+
     const con = db.getCon()
-    const data = await con.promise().query('SELECT * FROM content WHERE user_id = ?', [req.user.admin_id]);
+    //const data = await con.promise().query('SELECT * FROM content WHERE user_id = ?', [req.user.admin_id]);
+    const data = await con.promise().query(`
+    SELECT content.content_id, header, clickbait, img, tag FROM content
+    INNER JOIN content_tags ON content.content_id = content_tags.content_id
+    INNER JOIN tags ON content_tags.tag_id = tags.tag_id WHERE content.user_id = ?`, [req.user.admin_id]);
+
+    
+
     res.render('dashboard/myTopic.ejs', {data:data[0]});
 }
 
@@ -42,13 +49,13 @@ exports.deleteData = (req, res) => {
         con.promise().query('DELETE FROM admin_u WHERE admin_id = ?', [req.params.id])
 
         .then(response => {
-        
+
         con.promise().query('SELECT * FROM admin_u')
         .then(data => {
-            
+
             res.render('dashboard/adminManage.ejs', {data: data[0]});
         });
-    
+
         }).catch(err => {
             throw err.message;
         });
@@ -90,7 +97,7 @@ exports.updateData = (req, res) => {
         ).then(() => {
             con.promise().query('SELECT * FROM admin_u')
             .then(data => {
-                
+
                 res.render('dashboard/adminManage.ejs', {data: data[0]});
             });
         }).catch((err) => {throw err.message});

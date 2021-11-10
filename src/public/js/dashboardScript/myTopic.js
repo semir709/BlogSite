@@ -15,8 +15,8 @@ function myTopicButton_delete(event) {
         data: obj,
         success: function(data) {
             $('#display').html(data);
-           
-            
+
+
         }
     });
 }
@@ -26,7 +26,17 @@ function myTopicButton_update(event) {
     name = name.split('_');
     let id = name[2];
 
-    let obj = {contentId: id};
+    const tagsElement = event.target.parentNode.parentNode.getElementsByClassName('tag');
+    let tags = [];
+    // const imgName = event.target.parentNode.parentNode.getElementsByClassName('myTopic_img')[0].src.split('image/')[1];
+
+    for(let i = 0; i < tagsElement.length; i++) {
+
+        tags.push(tagsElement[i].getAttribute('data-item'));
+    }
+    // console.log(imgName);
+    let obj = {contentId: id, tags: tags};
+    // let obj = {contentId: id, tags: tags, img: imgName};
 
     $.ajax({
         type:'POST',

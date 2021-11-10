@@ -8,11 +8,16 @@ module.exports = {
         let id = req.body.contentId;
         let con = db.getCon();
 
-        //add way to delete img also while deleting content!!!
-
-        con.promise().query('DELETE FROM content WHERE content_id = ?', [id])
+        con.promise().query(`DELETE content, tags FROM content 
+        INNER JOIN content_tags ON content_tags.content_id = content.content_id
+        INNER JOIN tags ON tags.tag_id = content_tags.tag_id
+        WHERE content.content_id = ?;`, [id])
         .then(async respond => {
-            const data = await con.promise().query('SELECT * FROM content WHERE user_id = ?', [req.user.admin_id]);
+            const data = await con.promise().query(`
+            SELECT content.content_id, header, clickbait, img, tag FROM content
+            INNER JOIN content_tags ON content.content_id = content_tags.content_id
+            INNER JOIN tags ON content_tags.tag_id = tags.tag_id WHERE content.user_id = ?`, [req.user.admin_id]);
+
             res.render('dashboard/myTopic.ejs', {data:data[0]});
         })
         .catch(err => {console.log(err)});
@@ -21,38 +26,43 @@ module.exports = {
     },
     update: async function(req, res) {
         let id = req.body.contentId;
+        let tags = req.body.tags;
+        // let imgName = req.body.img;
+
+        // console.log(imgName);
 
         const con = db.getCon();
         const data = await con.promise().query('SELECT * FROM content WHERE content_id = ?', [id]);
-        
-        res.render('dashboard/newTopic.ejs', {data:data[0][0]});
-    },        
-    
+
+        res.render('dashboard/newTopic.ejs', {data:data[0][0], contentTags: tags});
+        // res.render('dashboard/newTopic.ejs', {data:data[0][0], contentTags: tags, imgName: imgName});
+    },
+
     finalUpdateImg: async function (req, res,cb) {
-        
+
         let upload = multer({storage: custom.imageStorage()}).single('img');
-    
-        
+
+
         upload(req, res, async function(err) {
 
             if (err instanceof multer.MulterError) {
                 req.Errmsg = true;
-            
+
              } else if (err) {
                 req.msg = true;
-                
+
             }
-            cb();  
-            
-        });      
-        
+            cb();
+
+        });
+
 
     },
     finalUpdateDb: function(req, res) {
         let data = req.body;
         let con = db.getCon();
 
-        console.log(data);
+        console.log(data, 'data');
 
         if(req.Errmsg) {
             req.flash('multerErrMsg', 'Img is not saved!!!');
@@ -60,14 +70,20 @@ module.exports = {
         }
 
         else {
-    
-            con.promise().query('UPDATE content SET header = ?, clickbait = ?, article = ?, img = ?, content_time = now() WHERE content_id = ?',
+
+            con.promise().query(`UPDATE content
+            INNER JOIN content_tags ON (content_tags.content_id = content.content_id)
+            INNER JOIN tags ON (content_tags.tag_id = tags.tag_id)
+            SET content.header = ?, content.clickbait = ?,content.article = ?,content.img = ?, tags.tag = ?
+            WHERE content.content_id = ?;`,
             [
                 data.heading,
                 data.clickbait,
                 data.article,
                 data.imgName,
+                JSON.stringify(data.tags),
                 data.id
+
             ]
             )
             .then(result => {
@@ -81,9 +97,9 @@ module.exports = {
                 if(err) {
                     con.promise().query('SELECT * FROM content WHERE img = ?', [req.file.filename])
                     .then(ressult => {
-    
+
                         if(ressult[0].length > 0) {
-                            
+
                         }
                         else {
                             fs.unlinkSync(path);
@@ -95,8 +111,8 @@ module.exports = {
                     res.redirect('/qadmin');
 
                 }
-                
-            });  
+
+            });
             }
 
     }

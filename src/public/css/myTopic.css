@@ -23,3 +23,25 @@
     width: 100%;
     height: 100%;
 }
+
+.tags {
+    width: 400px;
+    margin: 10px 0px 10px 0px ;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+
+.tag-myTopic {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    background: #f0eeee;
+    margin: 0px 5px;
+    font-size: 14px;
+    padding: 5px;
+    
+}
+
+

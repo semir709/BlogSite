@@ -29,14 +29,18 @@ async function saveContent (inputValues, data, cb) {
         });
 
         let contentId = contentRes[0].insertId;
-        let tagtId = tagsRes[0].insertId;;
+        let tagtId = tagsRes[0].insertId;
 
-        let contentTags = await con.promise().query('INSERT INTO content_tags VALUES (0,?,?)', [contentId, tagtId]).catch(err => {
+        console.log(contentId, 'content');
+        console.log(tagtId, 'tag');
+
+        let contentTags = await con.promise().query('INSERT INTO content_tags VALUES (?,?)', [contentId, tagtId]).catch(err => {
             console.log(err);
             msg = "error 4"
             return msg;
         });
 
+        
         msg = 'done';
         return cb(msg);
 
@@ -61,9 +65,16 @@ module.exports = {
              } else if (err) {
                 res.send(err);
              }else{
-                    
-                 let imageName = req.file.originalname; //error when is req.file.orginalName udentifed this happend when user press once on input type file
-                 //and then cancled chose and chose another img 
+                
+                let imageName;
+                if(typeof req.file === 'undefined') {
+                    imageName = 'empty' //Here we can letter add default image if the user didn't add the new image
+                }
+                else {
+                    imageName = req.file.originalname;
+                }
+
+                 
                  let inputValues = {
                     image_name: imageName,
                     user: req.user.admin_id
