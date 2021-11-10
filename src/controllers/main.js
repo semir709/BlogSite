@@ -8,8 +8,11 @@ module.exports = {
 
         let data = await con.promise().query(`
         SELECT content.content_id, content.header, content.clickbait, content.article, content.img, content.content_time,
-        admin_u.admin_name, admin_u.admin_surname FROM content INNER JOIN admin_u ON content.user_id = admin_u.admin_id 
+        admin_u.admin_name, admin_u.admin_surname, tags.tag FROM content INNER JOIN admin_u ON content.user_id = admin_u.admin_id 
+        INNER JOIN content_tags ON content_tags.content_id = content.content_id
+        INNER JOIN tags ON tags.tag_id = content_tags.tag_id
         ORDER BY content_id DESC`);
+
 
         let dataObj = custom.loadingNextPage(req.query.pa, data);
 

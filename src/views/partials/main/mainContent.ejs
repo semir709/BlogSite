@@ -20,10 +20,13 @@
                         <p><%= data[i].content_time.split(' ')[1] %></p>
                     </div>
 
-                    <div>
-                        <p><a href="">tag1</a></p>
-                        <p><a href="">tag2</a></p>
-                        <p><a href="">tag3</a></p>
+                    <div class="tags-div">
+                        <% if(data[i].tag !== null) { %>
+                            <% JSON.parse(data[i].tag).forEach(t => { %>
+                                <a href=""><%= t%></a>
+                            <% })  %>
+                        <% } %>
+                        
                     </div>
                 </div>
             </div>

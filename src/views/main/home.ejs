@@ -25,8 +25,12 @@
             <div id="topLImg"  style="background-image: url('image/<%=data[0].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info ">
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[0].tag !== null) { %>
+                            <% JSON.parse(data[0].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
+                        
                         <h1><%= data[0].header %></h1>
                     </div>
                 </div>
@@ -35,7 +39,6 @@
             <div id="topLImg"  style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info ">
-                        <p>tag</p>
                         <p>tag</p>
                         <h1>None</h1>
                     </div>
@@ -47,8 +50,11 @@
             <div id="downLImg" style="background-image: url('image/<%=data[1].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info rightTopAndleftBottom">
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[1].tag !== null) { %>
+                            <% JSON.parse(data[1].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
                         <h1><%= data[1].header %></h1>
                     </div>
                 </div>
@@ -57,7 +63,6 @@
             <div id="downLImg" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info rightTopAndleftBottom">
-                        <p>tag</p>
                         <p>tag</p>
                         <h1>None</h1>
                     </div>
@@ -71,8 +76,11 @@
             <div id="topLeft"style="background-image: url('image/<%=data[2].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo">
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[2].tag !== null) { %>
+                            <% JSON.parse(data[2].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
                         <h1><%= data[2].header %></h1>
                     </div>
                 </div>
@@ -82,7 +90,6 @@
             <div id="topLeft"style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo">
-                        <p>tag</p>
                         <p>tag</p>
                         <h1>none</h1>
                     </div>
@@ -94,8 +101,11 @@
             <div id="topRight" style="background-image: url('image/<%=data[3].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo" >
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[3].tag !== null) { %>
+                            <% JSON.parse(data[3].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
                         <h1><%= data[3].header %></h1>
                     </div>
                 </div>
@@ -105,7 +115,6 @@
             <div id="topRight" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo" >
-                        <p>tag</p>
                         <p>tag</p>
                         <h1>none</h1>
                     </div>
@@ -117,8 +126,11 @@
             <div id="downLeft" style="background-image: url('image/<%=data[4].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo">
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[4].tag !== null) { %>
+                            <% JSON.parse(data[4].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
                         <h1><%= data[4].header%></h1>
                     </div>
                 </div>
@@ -127,7 +139,6 @@
             <div id="downLeft" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo">
-                        <p>tag</p>
                         <p>tag</p>
                         <h1>none</h1>
                     </div>
@@ -139,8 +150,11 @@
             <div id="downRight" style="background-image: url('image/<%=data[5].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo" >
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[5].tag !== null) { %>
+                            <% JSON.parse(data[5].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
                         <h1><%= data[5].header %></h1>
                     </div>
                 </div>
@@ -151,7 +165,6 @@
             <div id="downRight" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info midInfo" >
-                        <p>tag</p>
                         <p>tag</p>
                         <h1>none</h1>
                     </div>
@@ -166,8 +179,11 @@
             <div id="topRImg"  style="background-image: url('image/<%=data[6].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info rightTopAndleftBottom" >
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[6].tag !== null) { %>
+                            <% JSON.parse(data[6].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
                         <h1><%= data[6].header %></h1>
                     </div>
                 </div>
@@ -177,7 +193,6 @@
                 <div id="topRImg"  style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                     <div class="dark-back">
                         <div class="artc-info rightTopAndleftBottom" >
-                            <p>tag</p>
                             <p>tag</p>
                             <h1>none</h1>
                         </div>
@@ -189,8 +204,11 @@
             <div id="downRImg" style="background-image: url('image/<%=data[7].img%>'); background-size: cover; background-repeat: no-repeat; background-position: center;">
                 <div class="dark-back">
                     <div class="artc-info">
-                        <p>tag</p>
-                        <p>tag</p>
+                        <% if(data[7].tag !== null) { %>
+                            <% JSON.parse(data[7].tag).forEach(t => { %>
+                                <p href=""><%= t%></p>
+                            <% })  %>
+                        <% } %>
                         <h1><%= data[7].header %></h1>
                     </div>
                 </div>
@@ -200,7 +218,6 @@
                 <div id="downRImg" style="background-image: url(''); background-size: cover; background-repeat: no-repeat; background-position: center;">
                     <div class="dark-back">
                         <div class="artc-info">
-                            <p>tag</p>
                             <p>tag</p>
                             <h1>none</h1>
                         </div>
