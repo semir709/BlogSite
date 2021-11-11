@@ -105,16 +105,23 @@ module.exports = {
          return storage;
      },
 
-     loadingNextPage(pagePar, data) {
+     loadingNextPage(pagePar, data, isCategory) {
          let firstPage;
          let rows;
          let page;
          let maxDisplyButt = 9;
 
-        if(typeof pagePar == 'undefined') {
+        if(typeof pagePar == 'undefined' ) {
             page = 1;
             rows = 18;
             firstPage = true;
+        }
+
+        else if(typeof pagePar == 'undefined' && isCategory == true) {
+            page = 1;
+            rows = 18;
+            firstPage = false;
+            
         }
 
         else {

@@ -29,10 +29,10 @@ router.post('/dash/newTask/upload', newTask.storeImg);
 router.delete('/myTask/delete', myTopics.delete);
 router.post('/myTask/update', myTopics.update);
 router.post('/myTask/Finalupdate',myTopics.finalUpdateImg,myTopics.finalUpdateDb);
-router.get('/hardware', main.hardware);
-router.get('/software', main.software);
-router.get('/network', main.network);
-router.get('/code', main.code);
+router.get('/category/:tag', main.category);
+// router.get('/category/software', main.software);
+// router.get('/category/network', main.network);
+// router.get('category/code', main.code);
 router.get('/about', main.aboutUs);
 router.get('/page/', main.listingPages);
 
