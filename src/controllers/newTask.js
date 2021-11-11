@@ -31,15 +31,19 @@ async function saveContent (inputValues, data, cb) {
         let contentId = contentRes[0].insertId;
         let tagtId = tagsRes[0].insertId;
 
-        console.log(contentId, 'content');
-        console.log(tagtId, 'tag');
-
         let contentTags = await con.promise().query('INSERT INTO content_tags VALUES (?,?)', [contentId, tagtId]).catch(err => {
             console.log(err);
             msg = "error 4"
             return msg;
         });
 
+        data.tags.forEach(t => {
+            con.promise().query('INSERT INTO all_tags VALUES (0,?)', [t]).catch(err => {
+                console.log(err);
+                msg = "error 5";
+                return msg;
+            })
+        });
         
         msg = 'done';
         return cb(msg);
@@ -96,6 +100,9 @@ module.exports = {
                         }
                         if(data == 'error 4') {
                             req.flash('msgError4', 'Error while connecting tags with the content');
+                        }
+                        if(data == 'error 5') {
+                            req.flash('msgError5', 'Error while saving tags');
                         }
                         if(data == 'done') {
                             req.flash('msgImgSuccess', 'The article is published');

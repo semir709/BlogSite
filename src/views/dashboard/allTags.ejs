@@ -1,0 +1,13 @@
+
+    <h1>All tags</h1>
+
+    <div id="allTagsDiv">
+        <% data.forEach(t => { %>
+            <div class="tagsList">
+                <input class="tagInput" value="<%=t.tag %>">
+                <button class="updateTags" data-id="<%=t.tag_id%>" onclick="tagsUpdate(event)">update</button>
+                <button class="deleteTags"  data-id="<%=t.tag_id%>" onclick="tagsDelete(event)">delete</button>
+            </div>
+        <% }); %>
+    </ul>
+    

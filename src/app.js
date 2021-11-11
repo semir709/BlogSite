@@ -61,6 +61,7 @@ app.use((req,res, next)=> {
     res.locals.error_2 = req.flash('msgError2'); 
     res.locals.error_3 = req.flash('msgError3'); 
     res.locals.error_4 = req.flash('msgError4'); 
+    res.locals.error_5 = req.flash('msgError5'); 
     res.locals.done_msg =  req.flash('msgImgSuccess'); 
     res.locals.multer_errMsg =  req.flash('multerErrMsg'); 
     res.locals.updateErrMsg = req.flash('msgUpdateErr');

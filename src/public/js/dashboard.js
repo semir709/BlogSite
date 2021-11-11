@@ -58,3 +58,15 @@ function manageCom_btn() {
     });
     
 }
+
+function tagsBtn() {
+    $.ajax({
+        type:'GET',
+        url:"/dashboard/allTags",
+        success: function(data) {
+            $('#display').html(data);
+            
+        }
+    });
+    
+}

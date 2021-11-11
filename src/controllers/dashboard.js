@@ -35,6 +35,16 @@ exports.comments = async (req, res) => {
     res.render('dashboard/comments.ejs');
 }
 
+exports.tags = async (req, res) => {
+
+    const con = db.getCon();
+
+    let data = await con.promise().query('SELECT * FROM all_tags ORDER BY all_tags.tag_id DESC');
+
+
+    res.render('dashboard/allTags.ejs', {data:data[0]});
+}
+
 
 exports.deleteData = (req, res) => {
 
