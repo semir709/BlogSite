@@ -7,6 +7,8 @@ module.exports = {
 
         const con = db.getCon();
 
+        let tags = await con.promise().query(`SELECT * FROM all_tags ORDER BY tag_id DESC `);
+
         let data = await con.promise().query(`
         SELECT content.content_id, content.header, content.clickbait, content.article, content.img, content.content_time,
         admin_u.admin_name, admin_u.admin_surname, tags.tag FROM content INNER JOIN admin_u ON content.user_id = admin_u.admin_id 
@@ -18,12 +20,14 @@ module.exports = {
         let dataObj = custom.loadingNextPage(req.query.pa, data, false);
 
         
-        res.render('main/home.ejs', {data:dataObj.trimData, firstPage: dataObj.firstPage, pages:dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight});
+        res.render('main/home.ejs', {data:dataObj.trimData, firstPage: dataObj.firstPage, pages:dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight, tags: tags[0]});
     },
 
     listingPages: async function(req, res) {
 
         const con = db.getCon();
+
+        let tags = await con.promise().query(`SELECT * FROM all_tags ORDER BY tag_id DESC `);
 
         let data = await con.promise().query(`
         SELECT content.content_id, content.header, content.clickbait, content.article, content.img, content.content_time,
@@ -34,13 +38,15 @@ module.exports = {
 
         let dataObj = custom.loadingNextPage(req.query.pa, data, false);
         // console.log(dataObj.maxLeft);
-        res.render('main/nextPage.ejs', {data: dataObj.trimData, firstPage: dataObj.firstPage, pages: dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight}); 
+        res.render('main/nextPage.ejs', {data: dataObj.trimData, firstPage: dataObj.firstPage, pages: dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight, tags: tags[0]}); 
         
         
     },
     category: async function (req, res) {
         console.log(req.params)
         const con = db.getCon();
+
+        let tags = await con.promise().query(`SELECT * FROM all_tags ORDER BY tag_id DESC `);
 
         let data = await con.promise().query(`
             SELECT tags.tag, content.header, content.article, content.clickbait, content.img, content.content_time, content.content_id,
@@ -55,7 +61,7 @@ module.exports = {
         console.log(req.query.pa);
         let dataObj = custom.loadingNextPage(req.query.pa, data, true);
 
-        res.render('main/category.ejs',{data: dataObj.trimData, firstPage: dataObj.firstPage, pages: dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight});
+        res.render('main/category.ejs',{data: dataObj.trimData, firstPage: dataObj.firstPage, pages: dataObj.pages, maxLeft: dataObj.maxLeft, maxRight: dataObj.maxRight, tags: tags[0]});
     },
     software: function(req, res) {
         res.render('main/software.ejs');

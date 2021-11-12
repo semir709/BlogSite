@@ -49,6 +49,11 @@ body, html {
 }
 
 #main-header a {
+    color: white;
+    text-decoration: none;
+}
+
+#main-header a {
     flex: 0.2;
 }
 
@@ -69,16 +74,18 @@ body, html {
 }
 
 .nav-other-menu {
-    padding: 0px 10px;
-
-}
-
-#container-nav-other-tags {
     display: grid;
     width: 100%;
     height: 100%;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: repeat(5, 20%);
+    grid-template-columns: repeat(5, 20%);
+    grid-auto-flow: column;
     padding: 0px 30px;
+}
+
+.nav-other-menu a {
+    color: #21292F;
+    text-decoration: none;
 }
 #nav-other .nav-other-menu .tag{
     list-style: none;
@@ -87,10 +94,10 @@ body, html {
     font-size: 20px;
 }
 
-.tagHref {
+/* .tagHref {
     color: black;
     text-decoration: none;
-}
+} */
 
 #drop-nav p {
     margin: 0px 0px 0px 0px;

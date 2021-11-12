@@ -10,29 +10,13 @@
         <li class="main_list" id="drop-nav" onclick="dropDownList()">
             <p>Other</p>
             <div id="nav-other">
-                <div id="container-nav-other-tags">
-                    <div class="tagsHref">
-                        <ul class="nav-other-menu">
-                            <li class="tag"><a class="tagHref" href="">Tag1</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag2</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag3</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag4</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag5</a></li>
-                    
-                        </ul>
-                    </div>
-
-                    <div class="tagsHref">
-                        <ul class="nav-other-menu">
-                            <li class="tag"><a class="tagHref" href="">Tag1</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag2</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag3</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag4</a></li>
-                            <li class="tag"><a class="tagHref" href="">Tag5</a></li>
-                    
-                        </ul>
-                    </div>
-                </div>
+                <ul class="nav-other-menu">
+                    <% tags.forEach(t => { %>
+                        <li class="tag"><a class="tagHref" href="/category/<%=t.tag%>"><%=t.tag%></a></li>
+                    <% }) %>
+                </ul>
+               
+                
             </div>
         </li>
     </ul>
