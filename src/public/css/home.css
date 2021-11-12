@@ -472,19 +472,38 @@ body, html {
 
 #followUs-info-content {
     display: grid;
-    grid-template-columns: 20% 20%;
+    grid-template-columns: 80%;
+    grid-template-rows: 30%;
+    align-items: center;
 }
 
-#textSocial p:hover {
+.fb-social, .inst-social, .tw-social {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+
+}
+
+.fb-social:hover, .inst-social:hover, .tw-social:hover {
+    color: #fc8f00;
+}
+
+#followUs-info-content a {
+    font-size: 20px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+}
+
+#followUs-info-content i {
+    font-size: 40px;
+    display: inline-block;
+    margin: 0px 20px 0px 0px;
+}
+
+#followUs-info-content p:hover {
     color: #fc8f00;
     cursor: pointer;
-}
-
-
-#icons button {
-   display: block;
-   margin: 16px 0px;
-
 }
 
 #quickNav {
@@ -511,7 +530,13 @@ body, html {
 
 }
 
-#quickNav-text p:hover {
+#quickNav-text a {
+    color: white;
+    text-decoration: none;
+    margin: 0px 0px 20px 0px;
+}
+
+#quickNav-text a:hover {
     color: #fc8f00;
     cursor: pointer;
 }
